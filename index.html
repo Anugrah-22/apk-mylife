@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#113d33">
-<meta name="description" content="MyLife - Personal Life Planner interaktif dengan pengingat notifikasi sistem Android">
+<meta name="description" content="MyLife - Personal Life Planner interaktif dengan nada notifikasi kustom & editor jadwal">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon.svg">
 <title>MyLife — Personal Life Planner</title>
@@ -13,7 +13,8 @@
   --bg:#f2f6f4;--card:#ffffff;--ink:#142822;--muted:#5c6f68;
   --green:#166550;--green-dark:#0f3d33;--green-soft:#e3f3ec;
   --amber:#d97706;--amber-soft:#fef3c7;--red:#dc2626;--red-soft:#fee2e2;
-  --blue:#0284c7;--blue-soft:#e0f2fe;--line:#dce7e2;--shadow:0 6px 20px rgba(15,61,51,.07);
+  --blue:#0284c7;--blue-soft:#e0f2fe;--purple:#7c3aed;--purple-soft:#ede9fe;
+  --line:#dce7e2;--shadow:0 6px 20px rgba(15,61,51,.07);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:88px}
@@ -51,15 +52,16 @@ h2{font-size:20px;margin:10px 2px;letter-spacing:-.01em}
 h3{font-size:16px;margin:2px 0 8px}
 
 button{cursor:pointer;font:inherit}
-.primary{border:0;background:var(--green);color:#fff;padding:11px 15px;border-radius:12px;font-weight:650;box-shadow:0 3px 10px rgba(22,101,80,.22);transition:transform .12s,background .2s}
+.primary{border:0;background:var(--green);color:#fff;padding:10px 14px;border-radius:12px;font-weight:650;box-shadow:0 3px 10px rgba(22,101,80,.2);transition:transform .12s,background .2s}
 .primary:active{transform:scale(.97)}
-.secondary{border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:11px;color:var(--ink);font-weight:550;transition:background .15s}
+.secondary{border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:11px;color:var(--ink);font-weight:550;transition:background .15s}
 .secondary:active{background:#f1f5f9}
-.amber-btn{border:0;background:var(--amber);color:#fff;padding:10px 14px;border-radius:11px;font-weight:650}
+.danger-btn{border:1px solid #fecaca;background:#fef2f2;color:#b91c1c;padding:7px 10px;border-radius:10px;font-size:12px;font-weight:600}
+.icon-btn{border:1px solid var(--line);background:#f8fafc;color:var(--ink);padding:6px 10px;border-radius:9px;font-size:12px;font-weight:600}
 
-input,select,textarea{width:100%;border:1px solid #cbd9d3;border-radius:11px;padding:11px;background:#fff;color:var(--ink);font:inherit;margin:5px 0 11px;transition:border-color .2s}
+input,select,textarea{width:100%;border:1px solid #cbd9d3;border-radius:11px;padding:10px 11px;background:#fff;color:var(--ink);font:inherit;margin:4px 0 10px;transition:border-color .2s}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green)}
-label{font-size:13px;color:var(--muted);font-weight:550}
+label{font-size:12.5px;color:var(--muted);font-weight:600}
 
 .progress{height:10px;background:#e4ede9;border-radius:99px;overflow:hidden}
 .progress span{display:block;height:100%;background:linear-gradient(90deg,#166550,#34d399);width:0%;transition:width .4s ease}
@@ -67,6 +69,7 @@ label{font-size:13px;color:var(--muted);font-weight:550}
 .pill{display:inline-flex;align-items:center;gap:4px;background:var(--green-soft);color:var(--green);padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700}
 .pill.warn{background:var(--amber-soft);color:#92400e}
 .pill.info{background:var(--blue-soft);color:#075985}
+.pill.purple{background:var(--purple-soft);color:#5b21b6}
 
 .habit-card{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:13px;margin:8px 0;background:#fff;cursor:pointer;transition:all .2s}
 .habit-card.checked{background:var(--green-soft);border-color:#86efac}
@@ -77,18 +80,22 @@ label{font-size:13px;color:var(--muted);font-weight:550}
 .timer-digits{font-size:36px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:1px;margin:6px 0}
 
 .sched-table{width:100%;border-collapse:collapse;font-size:13px}
-.sched-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-.sched-table tr.now-active{background:#fef3c7;font-weight:650;border-radius:8px}
+.sched-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.sched-table tr.now-active{background:#fef3c7;font-weight:650}
 .sched-table tr.now-active td:first-child{color:#b45309}
 
-.alarm-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
-.alarm-row:last-child{border-bottom:0}
+.alarm-card{border:1px solid var(--line);border-radius:14px;padding:12px;margin:9px 0;background:#fafcfb}
+.alarm-card.inactive{opacity:.62;background:#f8fafc}
 .switch{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0}
 .switch input{opacity:0;width:0;height:0;margin:0}
 .slider{position:absolute;cursor:pointer;inset:0;background:#cbd5e1;border-radius:34px;transition:.25s}
 .slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s}
 .switch input:checked + .slider{background:var(--green)}
 .switch input:checked + .slider:before{transform:translateX(20px)}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.55);display:none;align-items:center;justify-content:center;padding:14px;z-index:100;backdrop-filter:blur(3px)}
+.modal-backdrop.open{display:flex}
+.modal-box{background:#fff;border-radius:20px;max-width:480px;width:100%;padding:18px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 40px rgba(0,0,0,.22)}
 
 .notice{background:#fff7ed;border:1px solid #fed7aa;padding:13px;border-radius:14px;font-size:13px;color:#7c2d12;margin:12px 0}
 .notif-banner{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;padding:14px;border-radius:16px;margin:12px 0}
@@ -138,13 +145,13 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
   <div class="notif-banner" id="homeNotifPrompt">
     <div class="row" style="align-items:flex-start">
       <div>
-        <b style="color:#1e3a8a;font-size:14px">🔔 Aktifkan Pengingat di Bilah Notifikasi HP</b>
-        <p class="muted" style="margin:4px 0 10px;color:#1e40af">Dapatkan notifikasi keluar aplikasi untuk waktu Subuh, Belajar 25 menit, Magrib, Isya, dan batas tidur 21.00.</p>
+        <b style="color:#1e3a8a;font-size:14px">🔔 Aktifkan Pengingat & Suara Notifikasi Kustom</b>
+        <p class="muted" style="margin:4px 0 10px;color:#1e40af">Setiap kegiatan punya nada notifikasi default berbeda (Ibadah, Kerja, Belajar, Istirahat). Bisa diganti sesuai selera.</p>
       </div>
     </div>
     <div class="row" style="justify-content:flex-start;flex-wrap:wrap">
       <button class="primary" onclick="enableOutOfAppNotifications()">Aktifkan Notifikasi HP</button>
-      <button class="secondary" onclick="sendTestSystemNotification()">Uji Munculkan Notif</button>
+      <button class="secondary" onclick="sendTestSystemNotification()">Uji Suara & Notif</button>
     </div>
   </div>
 
@@ -165,19 +172,13 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
   <div class="card">
     <div class="row">
       <h3>Rutinitas Harian (Live)</h3>
-      <span class="pill warn" id="liveClockPill">--:--</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span class="pill warn" id="liveClockPill">--:--</span>
+        <button class="icon-btn" onclick="show('routine')">✏️ Edit Jadwal</button>
+      </div>
     </div>
-    <p class="muted">Acuan jadwal Barebbo. Baris kuning menandakan agenda yang sedang berlangsung.</p>
-    <table class="sched-table" id="homeScheduleTable">
-      <tr data-start="04:00" data-end="04:14"><td>04.00</td><td>Bangun dan persiapan Subuh</td></tr>
-      <tr data-start="04:14" data-end="06:15"><td>04.14</td><td>Subuh, zikir, Al-Qur'an</td></tr>
-      <tr data-start="07:30" data-end="15:00"><td>07.30–15.00</td><td>Bekerja</td></tr>
-      <tr data-start="16:30" data-end="17:30"><td>16.30</td><td>Belajar singkat 25 menit jika bugar</td></tr>
-      <tr data-start="17:58" data-end="19:13"><td>17.58</td><td>Magrib dan masjid</td></tr>
-      <tr data-start="19:13" data-end="20:15"><td>19.13</td><td>Isya dan masjid</td></tr>
-      <tr data-start="20:15" data-end="21:00"><td>Malam</td><td>Mobile Legends / anime sesuai batas tidur</td></tr>
-      <tr data-start="21:00" data-end="23:59"><td>21.00</td><td>Target mulai tidur</td></tr>
-    </table>
+    <p class="muted">Menyesuaikan jadwal kerja & harian yang kamu atur. Baris kuning menandakan agenda aktif saat ini.</p>
+    <table class="sched-table" id="homeScheduleTable"></table>
   </div>
 
   <div class="notice"><b>⚠️ Keselamatan:</b> Jika mengantuk berat atau mengalami <i>microsleep</i>, jangan berkendara. Periksakan kantuk berat yang hampir setiap hari ke dokter/Puskesmas. Aplikasi ini bukan alat diagnosis.</div>
@@ -189,14 +190,14 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
 
   <!-- Timer Fokus 25 Menit + Notifikasi Selesai -->
   <div class="timer-box">
-    <div style="font-size:12px;opacity:.85;letter-spacing:.06em">⏱️ SESI FOKUS BELAJAR (SESUAI JADWAL 16.30)</div>
+    <div style="font-size:12px;opacity:.85;letter-spacing:.06em">⏱️ SESI FOKUS BELAJAR</div>
     <div class="timer-digits" id="pomodoroDisplay">25:00</div>
     <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
       <button class="primary" style="background:#10b981" id="pomoStartBtn" onclick="togglePomodoro()">Mulai 25 Menit</button>
       <button class="secondary" onclick="resetPomodoro(25)">Reset 25m</button>
       <button class="secondary" onclick="resetPomodoro(5)">Istirahat 5m</button>
     </div>
-    <div style="font-size:11px;opacity:.8;margin-top:7px">Saat waktu habis, notifikasi sistem akan berbunyi meski layar HP dikunci/keluar aplikasi.</div>
+    <div style="font-size:11px;opacity:.8;margin-top:7px">Saat waktu habis, nada khusus Belajar akan berbunyi & muncul notifikasi sistem.</div>
   </div>
 
   <!-- Kartu Materi Aktif -->
@@ -338,58 +339,85 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
   <div class="notice">Mulai aktivitas fisik ringan hanya saat tubuh cukup bugar. Karena ada keluhan kantuk berat dan <i>microsleep</i>, konsultasikan dulu ke tenaga kesehatan sebelum menaikkan intensitas olahraga.</div>
 </section>
 
-<!-- ==================== JADWAL & NOTIFIKASI ==================== -->
+<!-- ==================== JADWAL & NOTIFIKASI KUSTOM ==================== -->
 <section id="routine" class="page">
-  <h2>Jadwal & Notifikasi Sistem</h2>
+  <h2>Jadwal & Pengaturan Notifikasi</h2>
 
-  <!-- PUSAT NOTIFIKASI LUAR APLIKASI -->
+  <!-- 1. PUSAT NOTIFIKASI & NADA KUSTOM TIAP KEGIATAN -->
   <div class="card" id="notifCenter">
     <div class="row">
       <div>
-        <h3>🔔 Pengingat Luar Aplikasi (Android/Web)</h3>
-        <p class="muted" style="margin:2px 0">Muncul di bilah status HP meski aplikasi ditutup/di latar belakang.</p>
+        <h3>🔔 Pengingat & Nada Tiap Kegiatan</h3>
+        <p class="muted" style="margin:2px 0">Tiap jenis kegiatan memiliki nada default berbeda & bisa diganti.</p>
       </div>
       <span class="pill" id="notifPermBadge">Belum Aktif</span>
     </div>
 
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">
       <button class="primary" onclick="enableOutOfAppNotifications()">1. Izinkan Notifikasi</button>
-      <button class="secondary" onclick="sendTestSystemNotification()">2. Tes Bunyi & Pop-up</button>
+      <button class="secondary" onclick="openAlarmModal(-1)">➕ Tambah Pengingat</button>
+      <button class="secondary" onclick="resetAlarmsDefault()">↺ Reset Default</button>
+    </div>
+
+    <!-- Pengaturan Nada Kustom Global / Upload Audio -->
+    <div style="background:#f8fafc;border:1px solid var(--line);border-radius:13px;padding:12px;margin-bottom:12px">
+      <div class="row">
+        <div>
+          <b style="font-size:13px">🎵 Nada Dering Kustom Sendiri (MP3/OGG/WAV)</b>
+          <div class="muted" style="font-size:12px" id="customAudioStatus">Belum ada file audio kustom diunggah.</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="icon-btn" onclick="document.getElementById('customAudioInput').click()">📂 Pilih File</button>
+          <button class="icon-btn" id="playCustomAudioBtn" style="display:none" onclick="playSoundProfile('custom')">▶️</button>
+        </div>
+      </div>
+      <input type="file" id="customAudioInput" accept="audio/*" hidden onchange="handleCustomAudioUpload(event)">
     </div>
 
     <div id="alarmList"></div>
 
     <div style="background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:11px;margin-top:12px;font-size:12px;color:var(--muted)">
-      <b>💡 Tips Agar Notifikasi Android Tidak Terlambat:</b>
-      <ol style="margin:6px 0 0;padding-left:18px">
-        <li>Pasang MyLife ke layar utama melalui Chrome (<b>Menu ⋮ → Instal aplikasi</b>).</li>
-        <li>Di pengaturan HP Android: buka <b>Info Aplikasi MyLife → Baterai → pilih "Tidak dibatasi" (Unrestricted)</b> agar sistem tidak mematikan proses latar belakang.</li>
-      </ol>
+      <b>💡 Info Suara Notifikasi:</b>
+      <ul style="margin:5px 0 0;padding-left:18px">
+        <li><b>Default Khusus Tiap Aktivitas:</b> Ibadah (<i>Gema Tenang</i>), Kerja (<i>Tegas Profesional</i>), Belajar (<i>Fokus Ceria</i>), Istirahat/Tidur (<i>Lembut Malam</i>), Hiburan (<i>Energi Ringan</i>).</li>
+        <li>Saat notifikasi muncul, ketuk tombol <b>🔊 Tes Nada</b> pada kartu kegiatan untuk mendengar perbedaan melodi dan pola getarannya.</li>
+      </ul>
     </div>
   </div>
 
+  <!-- 2. EDITOR JADWAL KERJA & HARIAN -->
   <div class="card">
-    <h3>Jadwal Hari Kerja (Barebbo)</h3>
-    <table class="sched-table">
-      <tr><td>04.00</td><td>Bangun, Subuh 04.14 dan zikir</td></tr>
-      <tr><td>04.45</td><td>Al-Qur'an 5–10 menit</td></tr>
-      <tr><td>05.10–06.15</td><td>Istirahat tambahan bila perlu</td></tr>
-      <tr><td>06.15–07.15</td><td>Persiapan dan sarapan</td></tr>
-      <tr><td>07.30–15.00</td><td>Bekerja; jeda gerak dan makan siang</td></tr>
-      <tr><td>15.12</td><td>Asar sesuai lokasi dan jadwal</td></tr>
-      <tr><td>Setelah pulang</td><td>Istirahat; jangan berkendara jika mengantuk</td></tr>
-      <tr><td>16.30</td><td>Belajar 25 menit jika segar</td></tr>
-      <tr><td>17.58</td><td>Magrib dan masjid jika memungkinkan</td></tr>
-      <tr><td>19.13</td><td>Isya dan masjid jika memungkinkan</td></tr>
-      <tr><td>Malam</td><td>Game / anime singkat, tanpa menggeser tidur</td></tr>
-      <tr><td>21.00</td><td>Target tidur</td></tr>
-    </table>
+    <div class="row">
+      <div>
+        <h3>📅 Editor Jadwal Kerja & Harian</h3>
+        <p class="muted" style="margin:2px 0">Ubah jam kerja, tambah agenda baru, atau hapus baris jadwal.</p>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="primary" style="padding:7px 11px;font-size:12px" onclick="openScheduleModal(-1)">➕ Tambah</button>
+        <button class="secondary" style="padding:7px 10px;font-size:12px" onclick="resetScheduleDefault()">↺ Reset</button>
+      </div>
+    </div>
+
+    <table class="sched-table" id="routineEditorTable" style="margin-top:8px"></table>
   </div>
 
+  <!-- 3. EDITOR JADWAL AKHIR PEKAN -->
   <div class="card">
-    <h3>Akhir Pekan</h3>
-    <p><b>Sabtu:</b> hafalan, belajar proyek 60–90 menit, game, anime, aktivitas masjid.</p>
-    <p style="margin-bottom:0"><b>Minggu:</b> murajaah, keluarga, hiburan, persiapan kerja dan evaluasi.</p>
+    <div class="row">
+      <h3>🌴 Rencana Akhir Pekan</h3>
+      <button class="icon-btn" onclick="toggleWeekendEdit()" id="weekendEditBtn">✏️ Edit</button>
+    </div>
+    <div id="weekendViewBox">
+      <p><b>Sabtu:</b> <span id="satTextView"></span></p>
+      <p style="margin-bottom:0"><b>Minggu:</b> <span id="sunTextView"></span></p>
+    </div>
+    <div id="weekendEditBox" style="display:none;margin-top:8px">
+      <label>Agenda Sabtu</label>
+      <textarea id="satInput" rows="2"></textarea>
+      <label>Agenda Minggu</label>
+      <textarea id="sunInput" rows="2"></textarea>
+      <button class="primary" onclick="saveWeekend()">💾 Simpan Akhir Pekan</button>
+    </div>
   </div>
 </section>
 
@@ -402,7 +430,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
       <h3>🎮 Kontrol Hiburan Malam</h3>
       <span class="pill warn" id="dayTypeBadge">Hari Kerja</span>
     </div>
-    <p class="muted">Mobile Legends: prioritaskan malam setelah Isya/masjid, tetapkan batas agar tidak menggeser jam tidur 21.00.</p>
+    <p class="muted">Mobile Legends: prioritaskan malam setelah Isya/masjid, tetapkan batas agar tidak menggeser jam tidur.</p>
     <div style="background:var(--bg);padding:12px;border-radius:13px;margin-top:8px">
       <div class="row">
         <div>
@@ -431,7 +459,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
 
   <div class="card">
     <h3>💾 Cadangan Data Perangkat</h3>
-    <p class="muted">Simpan cadangan file JSON secara berkala agar progres belajar dan kesehatan aman.</p>
+    <p class="muted">Simpan cadangan file JSON secara berkala agar jadwal, pengaturan nada, dan progres aman.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="secondary" onclick="exportData()">⬇️ Ekspor Cadangan (.json)</button>
       <button class="secondary" onclick="document.getElementById('importFile').click()">⬆️ Impor Cadangan</button>
@@ -440,7 +468,107 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
   </div>
 </section>
 
-<footer>MyLife v4 • Android PWA • Notifikasi Sistem & Offline Ready</footer>
+<!-- ==================== MODAL EDITOR PENGINGAT & NADA ==================== -->
+<div class="modal-backdrop" id="alarmModal">
+  <div class="modal-box">
+    <div class="row" style="margin-bottom:8px">
+      <h3 id="alarmModalTitle">Edit Pengingat Kegiatan</h3>
+      <button class="icon-btn" onclick="closeModal('alarmModal')">✕</button>
+    </div>
+    <input type="hidden" id="alarmEditIdx" value="-1">
+
+    <label>Kategori Kegiatan (Menentukan Nada Default)</label>
+    <select id="alarmCategoryInput" onchange="onAlarmCategoryChange()">
+      <option value="ibadah">🕌 Ibadah & Tilawah</option>
+      <option value="kerja">💼 Pekerjaan & Dinas</option>
+      <option value="belajar">📘 Belajar & Keterampilan</option>
+      <option value="tidur">🌙 Istirahat & Batas Tidur</option>
+      <option value="hiburan">🎮 Hiburan / Olahraga Ringan</option>
+    </select>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div>
+        <label>Jam Pengingat</label>
+        <input type="time" id="alarmTimeInput">
+      </div>
+      <div>
+        <label>Halaman Tujuan Saat Diklik</label>
+        <select id="alarmTabInput">
+          <option value="home">Beranda</option>
+          <option value="routine">Jadwal</option>
+          <option value="learn">Belajar</option>
+          <option value="health">Kesehatan</option>
+          <option value="fun">Hiburan</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Judul Notifikasi</label>
+    <input type="text" id="alarmTitleInput" placeholder="Contoh: 💼 Mulai Jam Kerja">
+
+    <label>Pesan Detail Notifikasi</label>
+    <textarea id="alarmBodyInput" rows="2" placeholder="Pesan yang tampil di bilah notifikasi HP..."></textarea>
+
+    <label>Pilih Suara / Nada Notifikasi</label>
+    <div style="display:flex;gap:8px;align-items:center">
+      <select id="alarmSoundInput" style="margin:0;flex:1">
+        <option value="ibadah">🕌 Gema Tenang (Default Ibadah)</option>
+        <option value="kerja">💼 Tegas Profesional (Default Kerja)</option>
+        <option value="belajar">📘 Fokus Ceria (Default Belajar)</option>
+        <option value="tidur">🌙 Lembut Malam (Default Tidur)</option>
+        <option value="energi">⚡ Energi Ringan (Default Hiburan)</option>
+        <option value="classic">🔔 Lonceng Klasik</option>
+        <option value="custom">🎵 File Audio Kustom Saya</option>
+      </select>
+      <button type="button" class="secondary" onclick="playSoundProfile(document.getElementById('alarmSoundInput').value)">🔊 Tes</button>
+    </div>
+
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+      <button class="secondary" onclick="closeModal('alarmModal')">Batal</button>
+      <button class="primary" onclick="saveAlarmModal()">💾 Simpan Pengingat</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODAL EDITOR JADWAL HARIAN ==================== -->
+<div class="modal-backdrop" id="schedModal">
+  <div class="modal-box">
+    <div class="row" style="margin-bottom:8px">
+      <h3 id="schedModalTitle">Edit Item Jadwal</h3>
+      <button class="icon-btn" onclick="closeModal('schedModal')">✕</button>
+    </div>
+    <input type="hidden" id="schedEditIdx" value="-1">
+
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div>
+        <label>Jam Mulai</label>
+        <input type="time" id="schedStartInput">
+      </div>
+      <div>
+        <label>Jam Selesai (Opsional)</label>
+        <input type="time" id="schedEndInput">
+      </div>
+    </div>
+
+    <label>Label Waktu Tampil (Contoh: 07.30–15.00 atau 16.30)</label>
+    <input type="text" id="schedLabelInput" placeholder="Otomatis terisi dari jam di atas jika dikosongkan">
+
+    <label>Nama Kegiatan / Aktivitas</label>
+    <input type="text" id="schedActivityInput" placeholder="Contoh: Bekerja; jeda gerak dan makan siang">
+
+    <label class="habit-card" style="margin:6px 0">
+      <input type="checkbox" id="schedSyncAlarmCheck">
+      <span>Sekaligus buat/perbarui pengingat notifikasi untuk jam mulai ini</span>
+    </label>
+
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+      <button class="secondary" onclick="closeModal('schedModal')">Batal</button>
+      <button class="primary" onclick="saveScheduleModal()">💾 Simpan Jadwal</button>
+    </div>
+  </div>
+</div>
+
+<footer>MyLife v5 • Android PWA • Nada Kustom & Editor Jadwal Fleksibel</footer>
 </main>
 
 <nav>
@@ -453,18 +581,49 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
 
 <script>
 const BASE_LESSONS = [
-  {id:'mylife-001',topic:'Spreadsheet',title:'Merapikan data administrasi',desc:'Kenali baris, kolom, tipe data, header, dan format tabel yang konsisten. Gunakan data siswa fiktif, bukan data pribadi.',task:'Buat tabel 20 siswa fiktif dengan kolom kelas, nama, tanggal lahir, dan status.',url:'https://etraining.kemnaker.go.id/belajarmandiri/detail/449'},
-  {id:'mylife-002',topic:'Spreadsheet',title:'Validasi dan format data',desc:'Pelajari format tanggal/angka, dropdown, validasi input, dan cara mencegah salah ketik.',task:'Tambahkan dropdown status aktif/nonaktif dan validasi tanggal.',url:'https://support.google.com/a/users/answer/9282959?hl=id'},
-  {id:'mylife-003',topic:'Spreadsheet',title:'Rumus dasar untuk rekap',desc:'Gunakan SUM, AVERAGE, MIN, MAX, COUNT dan COUNTA untuk menghitung data.',task:'Hitung jumlah data, rata-rata nilai simulasi, nilai tertinggi dan terendah.',url:'https://etraining.kemnaker.go.id/belajarmandiri/detail/449'}
+  {id:'mylife-001',topic:'Spreadsheet',title:'Merapikan data administrasi',desc:'Kenali baris, kolom, tipe data, header, dan format tabel yang konsisten. Gunakan data siswa fiktif, bukan data pribadi.',task:'Buat tabel 20 siswa fiktif dengan kolom kelas, nama, tanggal lahir, dan status.',url:'https://etraining.kemnaker.go.id/belajarmandiri/detail/449'}
 ];
 
+const SOUND_LABELS = {
+  ibadah: '🕌 Gema Tenang',
+  kerja: '💼 Tegas Profesional',
+  belajar: '📘 Fokus Ceria',
+  tidur: '🌙 Lembut Malam',
+  energi: '⚡ Energi Ringan',
+  classic: '🔔 Lonceng Klasik',
+  custom: '🎵 Audio Kustom'
+};
+
+const CATEGORY_DEFAULT_SOUND = {
+  ibadah: 'ibadah',
+  kerja: 'kerja',
+  belajar: 'belajar',
+  tidur: 'tidur',
+  hiburan: 'energi'
+};
+
 const DEFAULT_ALARMS = [
-  {id:'subuh',time:'04:10',title:'🕌 Persiapan Subuh (04.14)',body:'Waktunya bangun, bersiap salat Subuh berjamaah, zikir, dan tilawah.',active:true,targetTab:'routine'},
-  {id:'kerja',time:'07:15',title:'💼 Persiapan Berangkat Kerja',body:'Pastikan kondisi tubuh segar sebelum berkendara. Jika mengantuk berat, istirahat sejenak.',active:true,targetTab:'home'},
-  {id:'belajar',time:'16:30',title:'📘 Waktunya Belajar 25 Menit',body:'Buka Akademi MyLife dan selesaikan 1 sesi fokus jika tubuh bugar.',active:true,targetTab:'learn'},
-  {id:'magrib',time:'17:55',title:'🕌 Persiapan Magrib (17.58)',body:'Hentikan aktivitas sejenak, bersiap menuju masjid untuk salat Magrib.',active:true,targetTab:'routine'},
-  {id:'isya',time:'19:10',title:'🕌 Persiapan Isya (19.13)',body:'Waktunya salat Isya berjamaah di masjid.',active:true,targetTab:'routine'},
-  {id:'tidur',time:'20:55',title:'🌙 Batas Hiburan & Persiapan Tidur',body:'Tutup game/anime sekarang. Target mulai tidur pukul 21.00 agar besok bangun segar.',active:true,targetTab:'health'}
+  {id:'subuh',category:'ibadah',time:'04:10',title:'🕌 Persiapan Subuh (04.14)',body:'Waktunya bangun, bersiap salat Subuh berjamaah, zikir, dan tilawah.',sound:'ibadah',active:true,targetTab:'routine'},
+  {id:'kerja',category:'kerja',time:'07:15',title:'💼 Persiapan Berangkat Kerja',body:'Pastikan kondisi tubuh segar sebelum berkendara. Jika mengantuk berat, istirahat sejenak.',sound:'kerja',active:true,targetTab:'home'},
+  {id:'belajar',category:'belajar',time:'16:30',title:'📘 Waktunya Belajar 25 Menit',body:'Buka Akademi MyLife dan selesaikan 1 sesi fokus jika tubuh bugar.',sound:'belajar',active:true,targetTab:'learn'},
+  {id:'magrib',category:'ibadah',time:'17:55',title:'🕌 Persiapan Magrib (17.58)',body:'Hentikan aktivitas sejenak, bersiap menuju masjid untuk salat Magrib.',sound:'ibadah',active:true,targetTab:'routine'},
+  {id:'isya',category:'ibadah',time:'19:10',title:'🕌 Persiapan Isya (19.13)',body:'Waktunya salat Isya berjamaah di masjid.',sound:'ibadah',active:true,targetTab:'routine'},
+  {id:'tidur',category:'tidur',time:'20:55',title:'🌙 Batas Hiburan & Persiapan Tidur',body:'Tutup game/anime sekarang. Target mulai tidur pukul 21.00 agar besok bangun segar.',sound:'tidur',active:true,targetTab:'health'}
+];
+
+const DEFAULT_SCHEDULE = [
+  {start:'04:00',end:'04:14',label:'04.00',activity:'Bangun, Subuh 04.14 dan zikir'},
+  {start:'04:45',end:'05:10',label:'04.45',activity:"Al-Qur'an 5–10 menit"},
+  {start:'05:10',end:'06:15',label:'05.10–06.15',activity:'Istirahat tambahan bila perlu'},
+  {start:'06:15',end:'07:15',label:'06.15–07.15',activity:'Persiapan dan sarapan'},
+  {start:'07:30',end:'15:00',label:'07.30–15.00',activity:'Bekerja; jeda gerak dan makan siang'},
+  {start:'15:12',end:'15:45',label:'15.12',activity:'Asar sesuai lokasi dan jadwal'},
+  {start:'15:45',end:'16:30',label:'Setelah pulang',activity:'Istirahat; jangan berkendara jika mengantuk'},
+  {start:'16:30',end:'17:15',label:'16.30',activity:'Belajar 25 menit jika segar'},
+  {start:'17:58',end:'18:30',label:'17.58',activity:'Magrib dan masjid jika memungkinkan'},
+  {start:'19:13',end:'19:45',label:'19.13',activity:'Isya dan masjid jika memungkinkan'},
+  {start:'19:45',end:'21:00',label:'Malam',activity:'Game / anime singkat, tanpa menggeser tidur'},
+  {start:'21:00',end:'23:59',label:'21.00',activity:'Target tidur'}
 ];
 
 const KEY='mylife30_v2';
@@ -473,14 +632,34 @@ try{oldData=JSON.parse(localStorage.getItem(KEY)||localStorage.getItem('mylife30
 
 let data={
   done:[],notes:{},weights:[],habits:{},sleep:[],reviews:[],
-  customLessons:null,lessonVersion:'2026.11.22-v4',updateUrl:'./curriculum.json',
+  customLessons:null,lessonVersion:'2026.11.22-v5',updateUrl:'./curriculum.json',
   lastCurriculumCheck:null,bonusXp:0,animeLog:{},
-  reminders:{enabled:false,items:DEFAULT_ALARMS,fired:{}},
+  reminders:{enabled:false,items:JSON.parse(JSON.stringify(DEFAULT_ALARMS)),fired:{}},
+  workSchedule:JSON.parse(JSON.stringify(DEFAULT_SCHEDULE)),
+  weekendPlan:{
+    sat:'Hafalan, belajar proyek 60–90 menit, game, anime, aktivitas masjid.',
+    sun:'Murajaah, keluarga, hiburan, persiapan kerja dan evaluasi.'
+  },
+  customAudioData:null,
+  customAudioName:'',
   ...oldData
 };
 
 if(!data.reminders || !Array.isArray(data.reminders.items)){
-  data.reminders={enabled:false,items:DEFAULT_ALARMS,fired:{}};
+  data.reminders={enabled:false,items:JSON.parse(JSON.stringify(DEFAULT_ALARMS)),fired:{}};
+}
+data.reminders.items.forEach(it=>{
+  if(!it.category)it.category='ibadah';
+  if(!it.sound)it.sound=CATEGORY_DEFAULT_SOUND[it.category]||'classic';
+});
+if(!Array.isArray(data.workSchedule) || !data.workSchedule.length){
+  data.workSchedule=JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
+}
+if(!data.weekendPlan){
+  data.weekendPlan={
+    sat:'Hafalan, belajar proyek 60–90 menit, game, anime, aktivitas masjid.',
+    sun:'Murajaah, keluarga, hiburan, persiapan kerja dan evaluasi.'
+  };
 }
 
 let lessons=Array.isArray(data.customLessons)&&data.customLessons.length?data.customLessons:BASE_LESSONS;
@@ -490,7 +669,6 @@ data.inProgress=Array.isArray(data.inProgress)?data.inProgress:[];
 data.lessonNotes=data.lessonNotes&&typeof data.lessonNotes==='object'?data.lessonNotes:{};
 
 function lid(l,i){return l.id||`mylife-${String(i+1).padStart(3,'0')}`}
-
 data.done.forEach(n=>{
   if(Number.isInteger(n)&&n>=1&&n<=lessons.length){
     let id=lid(lessons[n-1],n-1);
@@ -522,7 +700,11 @@ function toast(msg){
 }
 
 function save(){
-  localStorage.setItem(KEY,JSON.stringify(data));
+  try{
+    localStorage.setItem(KEY,JSON.stringify(data));
+  }catch(e){
+    toast('⚠️ Penyimpanan penuh (ukuran audio terlalu besar).');
+  }
   syncRemindersToSW();
   refresh();
 }
@@ -532,9 +714,119 @@ function show(id){
   document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));
   if(id==='learn')renderLesson();
   if(id==='health')renderHealth();
-  if(id==='routine')renderAlarms();
+  if(id==='routine'){renderAlarms();renderScheduleEditor();renderWeekendPlan();}
   if(id==='fun')renderFun();
   window.scrollTo(0,0);
+}
+
+/* ==================== SYNTHESIZER NADA NOTIFIKASI TIAP KEGIATAN ==================== */
+let audioCtx=null;
+function playSoundProfile(profile='classic'){
+  if(profile==='custom' && data.customAudioData){
+    try{
+      const audio=new Audio(data.customAudioData);
+      audio.play().catch(()=>playSynthMelody('classic'));
+      return;
+    }catch{
+      profile='classic';
+    }
+  }
+  playSynthMelody(profile);
+}
+
+function playSynthMelody(profile){
+  try{
+    const Ctx=window.AudioContext||window.webkitAudioContext;
+    if(!audioCtx)audioCtx=new Ctx();
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    const now=audioCtx.currentTime;
+
+    const patterns={
+      // Ibadah: arpeggio harmonis lembut & khusyuk (F4 - A4 - C5 - F5)
+      ibadah:[
+        {f:349.23,t:0,d:0.35,type:'sine'},
+        {f:440.00,t:0.25,d:0.35,type:'sine'},
+        {f:523.25,t:0.50,d:0.40,type:'sine'},
+        {f:698.46,t:0.78,d:0.65,type:'sine'}
+      ],
+      // Kerja: dua ketukan tegas profesional (E5 - B4 - E5)
+      kerja:[
+        {f:659.25,t:0,d:0.16,type:'triangle'},
+        {f:493.88,t:0.18,d:0.16,type:'triangle'},
+        {f:659.25,t:0.38,d:0.30,type:'triangle'}
+      ],
+      // Belajar: nada naik cerah & fokus (C5 - E5 - G5)
+      belajar:[
+        {f:523.25,t:0,d:0.18,type:'sine'},
+        {f:659.25,t:0.16,d:0.18,type:'sine'},
+        {f:783.99,t:0.32,d:0.42,type:'sine'}
+      ],
+      // Tidur: nada turun pelan menenangkan (G4 - E4 - C4)
+      tidur:[
+        {f:392.00,t:0,d:0.45,type:'sine'},
+        {f:329.63,t:0.42,d:0.45,type:'sine'},
+        {f:261.63,t:0.84,d:0.75,type:'sine'}
+      ],
+      // Hiburan: ketukan cepat ceria (A4 - C#5 - E5 - A5)
+      energi:[
+        {f:440.00,t:0,d:0.12,type:'triangle'},
+        {f:554.37,t:0.12,d:0.12,type:'triangle'},
+        {f:659.25,t:0.24,d:0.12,type:'triangle'},
+        {f:880.00,t:0.36,d:0.28,type:'triangle'}
+      ],
+      classic:[
+        {f:587.33,t:0,d:0.25,type:'sine'},
+        {f:880.00,t:0.22,d:0.45,type:'sine'}
+      ]
+    };
+
+    const notes=patterns[profile]||patterns.classic;
+    notes.forEach(n=>{
+      const osc=audioCtx.createOscillator();
+      const gain=audioCtx.createGain();
+      osc.type=n.type;
+      osc.frequency.setValueAtTime(n.f,now+n.t);
+      gain.gain.setValueAtTime(0.001,now+n.t);
+      gain.gain.exponentialRampToValueAtTime(0.28,now+n.t+0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001,now+n.t+n.d);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now+n.t);
+      osc.stop(now+n.t+n.d+0.05);
+    });
+  }catch(e){}
+}
+
+function handleCustomAudioUpload(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  if(file.size>1.5*1024*1024){
+    toast('⚠️ Ukuran audio maksimal 1.5 MB agar tersimpan lancar di perangkat.');
+    return;
+  }
+  const reader=new FileReader();
+  reader.onload=()=>{
+    data.customAudioData=reader.result;
+    data.customAudioName=file.name;
+    save();
+    updateCustomAudioUI();
+    playSoundProfile('custom');
+    toast(`🎵 Nada kustom "${file.name}" disimpan!`);
+  };
+  reader.readAsDataURL(file);
+}
+
+function updateCustomAudioUI(){
+  const st=document.getElementById('customAudioStatus');
+  const btn=document.getElementById('playCustomAudioBtn');
+  if(!st)return;
+  if(data.customAudioData){
+    st.textContent=`Terpasang: ${data.customAudioName}`;
+    if(btn)btn.style.display='inline-block';
+  }else{
+    st.textContent='Belum ada file audio kustom diunggah.';
+    if(btn)btn.style.display='none';
+  }
 }
 
 /* ==================== GAMIFIKASI XP & LEVEL ==================== */
@@ -580,11 +872,24 @@ function refresh(){
   document.getElementById('activityCount').textContent=`${todayHabits}/5`;
   document.getElementById('sleepLatest').textContent=data.sleep.length?`${data.sleep[data.sleep.length-1].v} jam`:'—';
 
+  renderHomeScheduleTable();
   updateGamification();
   updateNotifUIStatus();
 }
 
-/* ==================== LIVE CLOCK & SCHEDULE HIGHLIGHT ==================== */
+/* ==================== JADWAL HARIAN DINAMIS (BERANDA + EDITOR) ==================== */
+function renderHomeScheduleTable(){
+  const tbl=document.getElementById('homeScheduleTable');
+  if(!tbl)return;
+  tbl.innerHTML=data.workSchedule.map(row=>`
+    <tr data-start="${escapeText(row.start||'')}" data-end="${escapeText(row.end||'')}">
+      <td style="width:110px;font-weight:600">${escapeText(row.label||row.start)}</td>
+      <td>${escapeText(row.activity)}</td>
+    </tr>
+  `).join('');
+  updateLiveClock();
+}
+
 function updateLiveClock(){
   const now=new Date();
   const hh=String(now.getHours()).padStart(2,'0');
@@ -603,6 +908,268 @@ function updateLiveClock(){
   });
   const banner=document.getElementById('activeAgendaBanner');
   if(banner)banner.textContent=activeText;
+}
+
+function renderScheduleEditor(){
+  const tbl=document.getElementById('routineEditorTable');
+  if(!tbl)return;
+  tbl.innerHTML=data.workSchedule.map((row,idx)=>`
+    <tr>
+      <td style="width:95px;font-weight:700;color:var(--green)">${escapeText(row.label||row.start)}</td>
+      <td>${escapeText(row.activity)}</td>
+      <td style="width:86px;text-align:right;white-space:nowrap">
+        <button class="icon-btn" onclick="openScheduleModal(${idx})" title="Edit">✏️</button>
+        <button class="danger-btn" onclick="deleteScheduleRow(${idx})" title="Hapus">🗑</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openScheduleModal(idx){
+  document.getElementById('schedEditIdx').value=idx;
+  const isNew=idx<0;
+  document.getElementById('schedModalTitle').textContent=isNew?'➕ Tambah Agenda Jadwal':'✏️ Edit Agenda Jadwal';
+  if(isNew){
+    document.getElementById('schedStartInput').value='08:00';
+    document.getElementById('schedEndInput').value='';
+    document.getElementById('schedLabelInput').value='';
+    document.getElementById('schedActivityInput').value='';
+    document.getElementById('schedSyncAlarmCheck').checked=false;
+  }else{
+    const row=data.workSchedule[idx];
+    document.getElementById('schedStartInput').value=row.start||'08:00';
+    document.getElementById('schedEndInput').value=row.end||'';
+    document.getElementById('schedLabelInput').value=row.label||'';
+    document.getElementById('schedActivityInput').value=row.activity||'';
+    document.getElementById('schedSyncAlarmCheck').checked=false;
+  }
+  document.getElementById('schedModal').classList.add('open');
+}
+
+function saveScheduleModal(){
+  const idx=Number(document.getElementById('schedEditIdx').value);
+  const start=document.getElementById('schedStartInput').value||'08:00';
+  let end=document.getElementById('schedEndInput').value;
+  const activity=document.getElementById('schedActivityInput').value.trim();
+  let label=document.getElementById('schedLabelInput').value.trim();
+
+  if(!activity){
+    toast('⚠️ Nama kegiatan wajib diisi.');
+    return;
+  }
+  if(!end){
+    const [h,m]=start.split(':').map(Number);
+    const endH=String(Math.min(23,h+1)).padStart(2,'0');
+    end=`${endH}:${String(m).padStart(2,'0')}`;
+  }
+  if(!label){
+    label=document.getElementById('schedEndInput').value
+      ? `${start.replace(':','.')}–${end.replace(':','.')}`
+      : start.replace(':','.');
+  }
+
+  const item={start,end,label,activity};
+  if(idx<0)data.workSchedule.push(item);
+  else data.workSchedule[idx]=item;
+
+  data.workSchedule.sort((a,b)=>(a.start||'99:99').localeCompare(b.start||'99:99'));
+
+  if(document.getElementById('schedSyncAlarmCheck').checked){
+    const cat=activity.toLowerCase().includes('subuh')||activity.toLowerCase().includes('magrib')||activity.toLowerCase().includes('isya')||activity.toLowerCase().includes('salat')
+      ?'ibadah'
+      :activity.toLowerCase().includes('kerja')
+      ?'kerja'
+      :activity.toLowerCase().includes('belajar')
+      ?'belajar'
+      :activity.toLowerCase().includes('tidur')
+      ?'tidur'
+      :'hiburan';
+
+    data.reminders.items.push({
+      id:'sched_'+Date.now(),
+      category:cat,
+      time:start,
+      title:`⏰ ${activity.slice(0,38)}`,
+      body:`Agenda terjadwal pukul ${label}: ${activity}`,
+      sound:CATEGORY_DEFAULT_SOUND[cat]||'classic',
+      active:true,
+      targetTab:'routine'
+    });
+    data.reminders.items.sort((a,b)=>a.time.localeCompare(b.time));
+  }
+
+  save();
+  renderScheduleEditor();
+  renderAlarms();
+  closeModal('schedModal');
+  toast('✅ Jadwal berhasil disimpan!');
+}
+
+function deleteScheduleRow(idx){
+  data.workSchedule.splice(idx,1);
+  save();
+  renderScheduleEditor();
+  toast('🗑 Baris jadwal dihapus.');
+}
+
+function resetScheduleDefault(){
+  data.workSchedule=JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
+  save();
+  renderScheduleEditor();
+  toast('↺ Jadwal dikembalikan ke pengaturan awal.');
+}
+
+function renderWeekendPlan(){
+  document.getElementById('satTextView').textContent=data.weekendPlan.sat;
+  document.getElementById('sunTextView').textContent=data.weekendPlan.sun;
+  document.getElementById('satInput').value=data.weekendPlan.sat;
+  document.getElementById('sunInput').value=data.weekendPlan.sun;
+}
+function toggleWeekendEdit(){
+  const box=document.getElementById('weekendEditBox');
+  box.style.display=box.style.display==='none'?'block':'none';
+}
+function saveWeekend(){
+  data.weekendPlan.sat=document.getElementById('satInput').value.trim()||data.weekendPlan.sat;
+  data.weekendPlan.sun=document.getElementById('sunInput').value.trim()||data.weekendPlan.sun;
+  save();
+  renderWeekendPlan();
+  document.getElementById('weekendEditBox').style.display='none';
+  toast('✅ Rencana akhir pekan diperbarui!');
+}
+
+/* ==================== PENGINGAT & NADA NOTIFIKASI TIAP KEGIATAN ==================== */
+function renderAlarms(){
+  updateCustomAudioUI();
+  const box=document.getElementById('alarmList');
+  if(!box)return;
+  box.innerHTML=data.reminders.items.map((item,idx)=>{
+    const sndName=SOUND_LABELS[item.sound]||SOUND_LABELS.classic;
+    return `
+    <div class="alarm-card ${item.active?'':'inactive'}">
+      <div class="row" style="align-items:flex-start">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="font-size:18px;font-weight:800;color:var(--green)">${escapeText(item.time)}</span>
+            <b style="font-size:14.5px">${escapeText(item.title)}</b>
+          </div>
+          <div class="muted" style="font-size:12.5px;margin:4px 0 8px">${escapeText(item.body)}</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+            <span class="pill purple">${sndName}</span>
+            <button class="icon-btn" onclick="testSingleAlarm(${idx})">🔊 Tes Nada</button>
+            <button class="icon-btn" onclick="openAlarmModal(${idx})">✏️ Ubah</button>
+            <button class="danger-btn" onclick="deleteAlarmItem(${idx})">🗑</button>
+          </div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" ${item.active?'checked':''} onchange="toggleAlarmItem(${idx},this.checked)">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openAlarmModal(idx){
+  document.getElementById('alarmEditIdx').value=idx;
+  const isNew=idx<0;
+  document.getElementById('alarmModalTitle').textContent=isNew?'➕ Tambah Pengingat Kegiatan':'✏️ Ubah Pengingat & Suara';
+  if(isNew){
+    document.getElementById('alarmCategoryInput').value='kerja';
+    document.getElementById('alarmTimeInput').value='08:00';
+    document.getElementById('alarmTabInput').value='routine';
+    document.getElementById('alarmTitleInput').value='';
+    document.getElementById('alarmBodyInput').value='';
+    document.getElementById('alarmSoundInput').value='kerja';
+  }else{
+    const it=data.reminders.items[idx];
+    document.getElementById('alarmCategoryInput').value=it.category||'ibadah';
+    document.getElementById('alarmTimeInput').value=it.time||'08:00';
+    document.getElementById('alarmTabInput').value=it.targetTab||'routine';
+    document.getElementById('alarmTitleInput').value=it.title||'';
+    document.getElementById('alarmBodyInput').value=it.body||'';
+    document.getElementById('alarmSoundInput').value=it.sound||CATEGORY_DEFAULT_SOUND[it.category]||'classic';
+  }
+  document.getElementById('alarmModal').classList.add('open');
+}
+
+function onAlarmCategoryChange(){
+  const cat=document.getElementById('alarmCategoryInput').value;
+  const defSound=CATEGORY_DEFAULT_SOUND[cat]||'classic';
+  document.getElementById('alarmSoundInput').value=defSound;
+  playSoundProfile(defSound);
+}
+
+function saveAlarmModal(){
+  const idx=Number(document.getElementById('alarmEditIdx').value);
+  const category=document.getElementById('alarmCategoryInput').value;
+  const time=document.getElementById('alarmTimeInput').value;
+  const targetTab=document.getElementById('alarmTabInput').value;
+  const title=document.getElementById('alarmTitleInput').value.trim();
+  const body=document.getElementById('alarmBodyInput').value.trim();
+  const sound=document.getElementById('alarmSoundInput').value;
+
+  if(!time || !title){
+    toast('⚠️ Jam dan judul notifikasi wajib diisi.');
+    return;
+  }
+
+  const obj={
+    id:idx<0?'custom_'+Date.now():data.reminders.items[idx].id,
+    category,
+    time,
+    title,
+    body:body||`Pengingat kegiatan pukul ${time}`,
+    sound,
+    active:idx<0?true:data.reminders.items[idx].active,
+    targetTab
+  };
+
+  if(idx<0)data.reminders.items.push(obj);
+  else data.reminders.items[idx]=obj;
+
+  data.reminders.items.sort((a,b)=>a.time.localeCompare(b.time));
+  save();
+  renderAlarms();
+  closeModal('alarmModal');
+  toast('✅ Pengingat & suara notifikasi disimpan!');
+}
+
+function deleteAlarmItem(idx){
+  data.reminders.items.splice(idx,1);
+  save();
+  renderAlarms();
+  toast('🗑 Pengingat dihapus.');
+}
+
+function resetAlarmsDefault(){
+  data.reminders.items=JSON.parse(JSON.stringify(DEFAULT_ALARMS));
+  data.reminders.fired={};
+  save();
+  renderAlarms();
+  toast('↺ Pengingat & nada default tiap aktivitas dikembalikan.');
+}
+
+function toggleAlarmItem(idx,val){
+  data.reminders.items[idx].active=val;
+  if(val&&(!('Notification' in window)||Notification.permission!=='granted')){
+    enableOutOfAppNotifications();
+  }else{
+    save();
+    renderAlarms();
+  }
+}
+
+function testSingleAlarm(idx){
+  const it=data.reminders.items[idx];
+  if(!it)return;
+  playSoundProfile(it.sound||'classic');
+  fireSystemNotification(it.title,it.body,it.targetTab||'routine',it.sound||'classic');
+  toast(`🔊 Memutar nada: ${SOUND_LABELS[it.sound]||'Default'}`);
+}
+
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
 }
 
 /* ==================== AKADEMI BELAJAR & POMODORO ==================== */
@@ -674,6 +1241,7 @@ function saveLesson(){
     if(!data.doneIds.includes(id))data.doneIds.push(id);
     if(!data.done.includes(current))data.done.push(current);
     data.inProgress=data.inProgress.filter(x=>x!==id);
+    playSoundProfile('belajar');
     toast(wasDone?'💾 Catatan diperbarui!':'🎉 Materi selesai! +25 XP');
   }else{
     data.doneIds=data.doneIds.filter(x=>x!==id);
@@ -713,10 +1281,12 @@ function togglePomodoro(){
         data.bonusXp=(Number(data.bonusXp)||0)+20;
         save();
       }
+      playSoundProfile(pomoMode===25?'belajar':'tidur');
       fireSystemNotification(
         pomoMode===25?'🎉 Sesi Belajar 25 Menit Selesai! (+20 XP)':'⏰ Waktu Istirahat 5 Menit Selesai!',
         pomoMode===25?'Kerja bagus! Istirahat sejenak 5 menit dan minum air putih.':'Siap melanjutkan sesi berikutnya jika masih segar?',
-        'learn'
+        'learn',
+        pomoMode===25?'belajar':'tidur'
       );
       resetPomodoro(pomoMode===25?5:25);
     }
@@ -743,7 +1313,6 @@ function renderHealth(){
     document.getElementById('weightGoalBar').style.width=`${pct}%`;
   }
 
-  // SVG Chart
   const chartBox=document.getElementById('weightChartBox');
   if(weights.length>=2){
     const recent=weights.slice(-8);
@@ -797,7 +1366,7 @@ function addWeight(){
 }
 
 function saveHabits(){
-  for(let i=0;i<5;i++)data.habits[localDate()+'_'+i]=document.getElementById('habit${i}'.replace('${i}',i)).checked;
+  for(let i=0;i<5;i++)data.habits[localDate()+'_'+i]=document.getElementById('habit'+i).checked;
   save();
   toast('✅ Checklist kebiasaan disimpan!');
 }
@@ -818,10 +1387,10 @@ function saveSleep(){
 
 /* ==================== HIBURAN & EVALUASI ==================== */
 function renderFun(){
-  const day=new Date().getDay(); // 0=Minggu, 6=Sabtu
+  const day=new Date().getDay();
   const isWeekend=(day===0||day===6);
   document.getElementById('dayTypeBadge').textContent=isWeekend?'Akhir Pekan':'Hari Kerja';
-  document.getElementById('animeTargetText').textContent=isWeekend?'Target akhir pekan: 3–4 episode':'Batas hari kerja: maks 1 episode (agar tidur tetap 21.00)';
+  document.getElementById('animeTargetText').textContent=isWeekend?'Target akhir pekan: 3–4 episode':'Batas hari kerja: maks 1 episode (agar tidur tetap terjaga)';
   document.getElementById('animeCount').textContent=data.animeLog[localDate()]||0;
 }
 function changeAnime(delta){
@@ -831,7 +1400,10 @@ function changeAnime(delta){
   save();
   const day=new Date().getDay();
   const limit=(day===0||day===6)?4:1;
-  if(cur>limit)toast('🌙 Sudah melewati batas episode hari ini, jaga jam tidur 21.00 ya!');
+  if(cur>limit){
+    playSoundProfile('tidur');
+    toast('🌙 Sudah melewati batas episode hari ini, jaga jam tidur ya!');
+  }
 }
 function saveReview(){
   data.reviews.push({
@@ -876,7 +1448,6 @@ async function enableOutOfAppNotifications(){
   data.reminders.enabled=true;
   save();
 
-  // Daftarkan Periodic Background Sync jika didukung Chrome Android
   if('serviceWorker' in navigator){
     try{
       const reg=await navigator.serviceWorker.ready;
@@ -889,17 +1460,17 @@ async function enableOutOfAppNotifications(){
     }catch(e){}
   }
 
-  toast('🔔 Notifikasi luar aplikasi berhasil diaktifkan!');
+  toast('🔔 Notifikasi luar aplikasi & suara kustom aktif!');
   sendTestSystemNotification();
   renderAlarms();
 }
 
-async function fireSystemNotification(title,body,targetTab='home'){
+async function fireSystemNotification(title,body,targetTab='home',sound='classic'){
   if(!('Notification' in window)||Notification.permission!=='granted')return;
   if('serviceWorker' in navigator){
     const reg=await navigator.serviceWorker.ready;
     if(reg.active){
-      reg.active.postMessage({type:'TEST_NOTIFICATION',title,body,targetTab});
+      reg.active.postMessage({type:'TEST_NOTIFICATION',title,body,targetTab,sound});
       return;
     }
   }
@@ -907,14 +1478,16 @@ async function fireSystemNotification(title,body,targetTab='home'){
 }
 
 function sendTestSystemNotification(){
+  playSoundProfile('ibadah');
   if(!('Notification' in window)||Notification.permission!=='granted'){
     enableOutOfAppNotifications();
     return;
   }
   fireSystemNotification(
     '🔔 MyLife Pengingat Aktif!',
-    'Notifikasi berhasil muncul di luar aplikasi. Jadwal Subuh, Belajar 16.30, Magrib, Isya, & Tidur 21.00 siap diingatkan.',
-    'routine'
+    'Notifikasi & nada khusus tiap aktivitas siap mengingatkan jadwal harianmu.',
+    'routine',
+    'ibadah'
   );
   toast('📲 Cek bilah notifikasi di bagian atas layar HP Anda!');
 }
@@ -928,43 +1501,6 @@ function syncRemindersToSW(){
   }
 }
 
-function renderAlarms(){
-  const box=document.getElementById('alarmList');
-  if(!box)return;
-  box.innerHTML=data.reminders.items.map((item,idx)=>`
-    <div class="alarm-row">
-      <div style="flex:1">
-        <div style="display:flex;align-items:center;gap:8px">
-          <input type="time" value="${item.time}" style="width:auto;margin:0;padding:5px 8px;font-weight:700" onchange="updateAlarmTime(${idx},this.value)">
-          <b style="font-size:14px">${escapeText(item.title)}</b>
-        </div>
-        <div class="muted" style="font-size:12px;margin-top:3px">${escapeText(item.body)}</div>
-      </div>
-      <label class="switch">
-        <input type="checkbox" ${item.active?'checked':''} onchange="toggleAlarmItem(${idx},this.checked)">
-        <span class="slider"></span>
-      </label>
-    </div>
-  `).join('');
-}
-
-function updateAlarmTime(idx,newTime){
-  if(!newTime)return;
-  data.reminders.items[idx].time=newTime;
-  save();
-  toast(`⏰ Jadwal diubah ke ${newTime}`);
-}
-
-function toggleAlarmItem(idx,val){
-  data.reminders.items[idx].active=val;
-  if(val&&(!('Notification' in window)||Notification.permission!=='granted')){
-    enableOutOfAppNotifications();
-  }else{
-    save();
-  }
-}
-
-// Pemeriksa jadwal setiap 20 detik (menjaga sinkronisasi dengan Service Worker)
 setInterval(()=>{
   updateLiveClock();
   if(data.reminders.enabled&&('Notification' in window)&&Notification.permission==='granted'){
@@ -978,13 +1514,14 @@ setInterval(()=>{
       if(item.active&&item.time===curHM&&!data.reminders.fired[key]){
         data.reminders.fired[key]=true;
         changed=true;
-        fireSystemNotification(item.title,item.body,item.targetTab||'home');
+        playSoundProfile(item.sound||'classic');
+        fireSystemNotification(item.title,item.body,item.targetTab||'home',item.sound||'classic');
       }
     }
     if(changed)save();
     else syncRemindersToSW();
   }
-},20000);
+},15000);
 
 /* ==================== BACKUP & KURIKULUM ==================== */
 function exportData(){
@@ -1006,6 +1543,8 @@ function importData(e){
       current=Math.min(lessons.length,Number(data.currentDay)||1);
       save();
       renderLesson();
+      renderScheduleEditor();
+      renderAlarms();
       toast('✅ Cadangan berhasil dipulihkan!');
     }catch{
       toast('❌ File cadangan tidak valid.');
@@ -1058,7 +1597,6 @@ async function checkCurriculum(manual=false){
 
 // Inisialisasi Awal
 document.getElementById('todayLabel').textContent=new Date().toLocaleDateString('id-ID',{weekday:'short',day:'numeric',month:'short'});
-updateLiveClock();
 refresh();
 renderLesson();
 if(data.updateUrl)checkCurriculum(false);

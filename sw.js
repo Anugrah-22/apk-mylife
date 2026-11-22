@@ -1,4 +1,4 @@
-const CACHE = "mylife-cache-v4";
+const CACHE = "mylife-cache-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -96,6 +96,17 @@ self.addEventListener("fetch", (e) => {
   );
 });
 
+function getVibrationPattern(soundId) {
+  switch (soundId) {
+    case "ibadah": return [300, 120, 300, 120, 500];
+    case "kerja": return [200, 80, 200, 80, 200];
+    case "belajar": return [180, 100, 350];
+    case "tidur": return [500, 250, 500];
+    case "energi": return [120, 60, 120, 60, 120, 60, 300];
+    default: return [200, 100, 200];
+  }
+}
+
 async function checkAndFireReminders() {
   const cfg = await getConfig();
   if (!cfg || !cfg.enabled || !Array.isArray(cfg.items)) return;
@@ -115,14 +126,15 @@ async function checkAndFireReminders() {
     if (item.time === curHM && !cfg.fired[key]) {
       cfg.fired[key] = true;
       changed = true;
+      const snd = item.sound || "default";
       await self.registration.showNotification(item.title, {
         body: item.body,
         icon: "./icons/icon.svg",
         badge: "./icons/icon.svg",
-        tag: "mylife-" + item.id,
+        tag: "mylife-" + item.id + "-" + snd,
         renotify: true,
-        vibrate: [200, 100, 200],
-        data: { url: item.targetTab ? `./#${item.targetTab}` : "./" }
+        vibrate: getVibrationPattern(snd),
+        data: { url: item.targetTab ? `./#${item.targetTab}` : "./", sound: snd }
       });
     }
   }
@@ -139,15 +151,16 @@ self.addEventListener("message", (e) => {
       setConfig(data.payload).then(() => checkAndFireReminders())
     );
   } else if (data.type === "TEST_NOTIFICATION") {
+    const snd = data.sound || "default";
     e.waitUntil(
       self.registration.showNotification(data.title || "🔔 MyLife Pengingat Aktif", {
-        body: data.body || "Notifikasi sistem Android berhasil diaktifkan! Pengingat jadwal akan muncul di bilah notifikasi HP.",
+        body: data.body || "Notifikasi sistem berhasil dijalankan.",
         icon: "./icons/icon.svg",
         badge: "./icons/icon.svg",
-        tag: "mylife-test",
+        tag: "mylife-test-" + snd,
         renotify: true,
-        vibrate: [200, 100, 200],
-        data: { url: "./" }
+        vibrate: getVibrationPattern(snd),
+        data: { url: data.targetTab ? `./#${data.targetTab}` : "./", sound: snd }
       })
     );
   } else if (data.type === "CHECK_NOW") {
@@ -155,7 +168,6 @@ self.addEventListener("message", (e) => {
   }
 });
 
-// Periodic Background Sync (jalan di latar belakang pada Chrome/Android saat PWA terpasang)
 self.addEventListener("periodicsync", (e) => {
   if (e.tag === "mylife-reminder-sync") {
     e.waitUntil(checkAndFireReminders());
@@ -168,26 +180,6 @@ self.addEventListener("sync", (e) => {
   }
 });
 
-// Web Push handler (jika suatu saat dihubungkan ke Firebase Cloud Messaging / server push)
-self.addEventListener("push", (e) => {
-  let payload = { title: "MyLife", body: "Waktunya menjalankan agenda harianmu!" };
-  try {
-    if (e.data) payload = { ...payload, ...e.data.json() };
-  } catch {
-    if (e.data) payload.body = e.data.text();
-  }
-  e.waitUntil(
-    self.registration.showNotification(payload.title, {
-      body: payload.body,
-      icon: "./icons/icon.svg",
-      badge: "./icons/icon.svg",
-      vibrate: [200, 100, 200],
-      data: { url: "./" }
-    })
-  );
-});
-
-// Buka langsung aplikasi MyLife saat notifikasi di bilah status HP diketuk
 self.addEventListener("notificationclick", (e) => {
   e.notification.close();
   const targetUrl = (e.notification.data && e.notification.data.url) || "./";

@@ -1,15 +1,17 @@
-MYLIFE v4 — ANDROID PWA + NOTIFIKASI SISTEM LUAR APLIKASI
+MYLIFE v5 — ANDROID PWA + NADA NOTIFIKASI TIAP AKTIVITAS & EDITOR JADWAL
 
-APA YANG BARU DI VERSI INI:
-1. Tampilan interaktif modern dengan sistem Level & XP otomatis, Live Highlight Jadwal Harian, Grafik Berat Badan, Timer Fokus 25 Menit, dan Kontrol Batas Anime.
-2. Notifikasi Sistem di Luar Aplikasi (System Push/Notification via Service Worker):
-   - Muncul di bilah status HP Android meskipun aplikasi ditutup/berada di latar belakang.
-   - Jadwal pengingat otomatis: Persiapan Subuh (04.10), Persiapan Kerja (07.15), Belajar 25 Menit (16.30), Magrib (17.55), Isya (19.10), dan Batas Tidur (20.55).
-   - Jam pengingat bisa diubah langsung dari menu Jadwal, serta dilengkapi tombol "Tes Bunyi & Pop-up".
+FITUR BARU DI VERSI 5:
+1. Default Khusus Nada & Getaran Tiap Kategori Aktivitas:
+   - Ibadah & Tilawah: Nada "Gema Tenang" (arpeggio lembut) + pola getar khusus.
+   - Pekerjaan & Dinas: Nada "Tegas Profesional" + getaran cepat.
+   - Belajar & Keterampilan: Nada "Fokus Ceria".
+   - Istirahat & Batas Tidur: Nada "Lembut Malam" (nada turun menenangkan).
+   - Hiburan / Olahraga: Nada "Energi Ringan".
+2. Ganti Suara Notifikasi & Upload Audio Sendiri:
+   - Pengguna dapat mengganti suara setiap pengingat atau mengunggah file audio sendiri (.mp3 / .ogg / .wav) langsung dari tab Jadwal.
+3. Editor Lengkap Jadwal Kerja, Harian & Akhir Pekan:
+   - Tambah baris kegiatan baru, edit jam mulai/selesai, hapus agenda, serta opsi otomatis sinkron ke pengingat notifikasi.
+   - Edit rencana hari Sabtu & Minggu secara langsung.
 
-CARA PASANG / UPDATE KE GITHUB PAGES ATAU VERCEL:
-1. Ekstrak seluruh isi file ZIP ini.
-2. Unggah dan timpa file lama di repository GitHub Anda (index.html, sw.js, manifest.webmanifest, curriculum.json, icons/icon.svg).
-3. Buka aplikasi MyLife di HP Android melalui Chrome (HTTPS) -> Instal ke layar utama.
-4. Klik tombol "Aktifkan Notifikasi HP" di halaman Beranda atau tab Jadwal.
-5. (Disarankan di Android): Buka Info Aplikasi MyLife -> Baterai -> pilih "Tidak dibatasi" (Unrestricted) agar sistem Android tidak menidurkan pengingat latar belakang.
+CARA UPDATE:
+Timpa seluruh file di repositori GitHub Pages / hosting HTTPS Anda dengan isi folder ZIP ini (cache sw.js otomatis naik ke mylife-cache-v5).
