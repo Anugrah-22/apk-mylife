@@ -1,0 +1,526 @@
+{
+  "version": "2026.11.22-v3",
+  "updatedAt": "2026-11-22",
+  "lessons": [
+    {
+      "topic": "Spreadsheet",
+      "title": "Merapikan data administrasi",
+      "desc": "Kenali baris, kolom, tipe data, header, dan format tabel yang konsisten. Gunakan data siswa fiktif, bukan data pribadi.",
+      "task": "Buat tabel 20 siswa fiktif dengan kolom kelas, nama, tanggal lahir, dan status.",
+      "url": "https://etraining.kemnaker.go.id/belajarmandiri/detail/449",
+      "id": "mylife-001"
+    },
+    {
+      "topic": "Spreadsheet",
+      "title": "Validasi dan format data",
+      "desc": "Pelajari format tanggal/angka, dropdown, validasi input, dan cara mencegah salah ketik.",
+      "task": "Tambahkan dropdown status aktif/nonaktif dan validasi tanggal.",
+      "url": "https://support.google.com/a/users/answer/9282959?hl=id",
+      "id": "mylife-002"
+    },
+    {
+      "topic": "Spreadsheet",
+      "title": "Rumus dasar untuk rekap",
+      "desc": "Gunakan SUM, AVERAGE, MIN, MAX, COUNT dan COUNTA untuk menghitung data.",
+      "task": "Hitung jumlah data, rata-rata nilai simulasi, nilai tertinggi dan terendah.",
+      "url": "https://etraining.kemnaker.go.id/belajarmandiri/detail/449",
+      "id": "mylife-003"
+    },
+    {
+      "topic": "Spreadsheet",
+      "title": "Logika IF dan IF bertingkat",
+      "desc": "Gunakan IF untuk membuat kategori otomatis berdasarkan kondisi.",
+      "task": "Buat status Lulus/Perlu Tindak Lanjut dari nilai simulasi.",
+      "url": "https://support.google.com/a/users/answer/9282959?hl=id",
+      "id": "mylife-004"
+    },
+    {
+      "topic": "Spreadsheet",
+      "title": "COUNTIF, SUMIF, dan COUNTIFS",
+      "desc": "Rekap jumlah atau total berdasarkan satu maupun beberapa kriteria.",
+      "task": "Hitung jumlah siswa per kelas dan jumlah status tertentu.",
+      "url": "https://support.google.com/a/users/answer/9282959?hl=id",
+      "id": "mylife-005"
+    },
+    {
+      "topic": "Spreadsheet",
+      "title": "Sort, Filter, dan pencarian",
+      "desc": "Urutkan dan saring data tanpa mengubah sumber data asli.",
+      "task": "Filter siswa berdasarkan kelas dan status; urutkan berdasarkan nama.",
+      "url": "https://support.google.com/a/users/answer/9282959?hl=id",
+      "id": "mylife-006"
+    },
+    {
+      "topic": "Spreadsheet",
+      "title": "Lookup data antar tabel",
+      "desc": "Pelajari XLOOKUP atau VLOOKUP untuk mengambil informasi dari tabel referensi.",
+      "task": "Ambil nama kelas berdasarkan kode kelas dari tabel referensi.",
+      "url": "https://support.google.com/a/users/answer/9282959?hl=id",
+      "id": "mylife-007"
+    },
+    {
+      "topic": "Data",
+      "title": "Membersihkan data duplikat",
+      "desc": "Temukan data kosong, duplikat, salah format, dan inkonsistensi penulisan.",
+      "task": "Sengaja masukkan 3 duplikat pada dataset latihan lalu bersihkan.",
+      "url": "https://learn.microsoft.com/id-id/training/",
+      "id": "mylife-008"
+    },
+    {
+      "topic": "Data",
+      "title": "Membuat PivotTable",
+      "desc": "Ringkas data besar menurut kategori tanpa menulis banyak rumus.",
+      "task": "Buat rekap jumlah siswa fiktif per kelas dan status.",
+      "url": "https://learn.microsoft.com/id-id/training/",
+      "id": "mylife-009"
+    },
+    {
+      "topic": "Data",
+      "title": "Grafik yang tepat untuk data",
+      "desc": "Pilih grafik batang, garis, atau lingkaran sesuai pertanyaan yang ingin dijawab.",
+      "task": "Buat dua grafik dari dataset dan tulis satu kesimpulan tiap grafik.",
+      "url": "https://learn.microsoft.com/id-id/training/paths/analyze-data-power-bi/",
+      "id": "mylife-010"
+    },
+    {
+      "topic": "Visualisasi",
+      "title": "Prinsip dashboard yang mudah dibaca",
+      "desc": "Tentukan audiens, pertanyaan utama, KPI, hierarki visual, dan hindari dekorasi berlebihan.",
+      "task": "Sketsa dashboard ringkas untuk kepala sekolah: 3 KPI dan 2 grafik.",
+      "url": "https://learn.microsoft.com/id-id/training/",
+      "id": "mylife-011"
+    },
+    {
+      "topic": "Visualisasi",
+      "title": "Membuat dashboard spreadsheet",
+      "desc": "Gabungkan kartu angka, grafik, filter, dan judul yang informatif.",
+      "task": "Buat dashboard dari data siswa fiktif tanpa memakai data asli sekolah.",
+      "url": "https://learn.microsoft.com/id-id/training/",
+      "id": "mylife-012"
+    },
+    {
+      "topic": "Visualisasi",
+      "title": "Membuat laporan bulanan",
+      "desc": "Susun ringkasan eksekutif, tabel pendukung, temuan, dan tindak lanjut.",
+      "task": "Buat laporan satu halaman dengan 3 temuan dan 2 rekomendasi.",
+      "url": "https://grow.google/intl/id_id/learn-skills/",
+      "id": "mylife-013"
+    },
+    {
+      "topic": "Administrasi",
+      "title": "Pemetaan proses kerja operator",
+      "desc": "Catat proses berulang, input, output, pihak terkait, dan titik rawan kesalahan.",
+      "task": "Petakan satu alur administrasi sekolah dari awal sampai arsip.",
+      "url": "https://grow.google/intl/id_id/learn-skills/",
+      "id": "mylife-014"
+    },
+    {
+      "topic": "Administrasi",
+      "title": "Standar penamaan dan arsip digital",
+      "desc": "Gunakan struktur folder, nama file konsisten, tanggal ISO, dan versi dokumen.",
+      "task": "Rancang struktur folder tahunan dan aturan nama file surat.",
+      "url": "https://support.google.com/drive/answer/2424384?hl=id",
+      "id": "mylife-015"
+    },
+    {
+      "topic": "Administrasi",
+      "title": "Mail merge untuk surat",
+      "desc": "Pelajari konsep sumber data, template surat, field, dan pemeriksaan hasil cetak.",
+      "task": "Buat template surat simulasi dengan 5 penerima fiktif.",
+      "url": "https://support.microsoft.com/id-id/word",
+      "id": "mylife-016"
+    },
+    {
+      "topic": "Administrasi",
+      "title": "Formulir digital dan pengumpulan data",
+      "desc": "Rancang pertanyaan yang jelas, validasi, persetujuan, dan pembatasan akses.",
+      "task": "Buat rancangan Google Form untuk inventaris perangkat fiktif.",
+      "url": "https://support.google.com/docs/topic/9055404?hl=id",
+      "id": "mylife-017"
+    },
+    {
+      "topic": "Administrasi",
+      "title": "Rekap otomatis dan alur persetujuan",
+      "desc": "Pahami trigger, status, notifikasi, dan siapa yang berwenang menyetujui.",
+      "task": "Gambar alur permintaan surat dari pengajuan sampai arsip.",
+      "url": "https://learn.microsoft.com/id-id/training/",
+      "id": "mylife-018"
+    },
+    {
+      "topic": "Administrasi",
+      "title": "Backup dan pemulihan dokumen",
+      "desc": "Bedakan sinkronisasi dan backup; siapkan salinan berkala dan uji pemulihan.",
+      "task": "Buat aturan backup 3-2-1 sederhana untuk dokumen kerja.",
+      "url": "https://support.google.com/drive/answer/2375102?hl=id",
+      "id": "mylife-019"
+    },
+    {
+      "topic": "Administrasi",
+      "title": "SOP digital untuk pekerjaan berulang",
+      "desc": "SOP memuat tujuan, pelaksana, langkah, pengecekan, dan bukti hasil.",
+      "task": "Tulis SOP satu halaman untuk rekap data bulanan.",
+      "url": "https://grow.google/intl/id_id/learn-skills/",
+      "id": "mylife-020"
+    },
+    {
+      "topic": "Web",
+      "title": "Cara kerja web dan browser",
+      "desc": "Kenali browser, server, domain, hosting, HTTP/HTTPS, dan request-response.",
+      "task": "Gambar alur saat pengguna membuka halaman SiAndal.",
+      "url": "https://developer.mozilla.org/id/docs/Learn_web_development",
+      "id": "mylife-021"
+    },
+    {
+      "topic": "Web",
+      "title": "HTML semantik",
+      "desc": "Gunakan heading, section, form, label, button, tabel, dan struktur yang benar.",
+      "task": "Buat halaman profil sederhana untuk aplikasi administrasi fiktif.",
+      "url": "https://developer.mozilla.org/id/docs/Learn_web_development",
+      "id": "mylife-022"
+    },
+    {
+      "topic": "Web",
+      "title": "CSS layout dan responsif",
+      "desc": "Latih box model, flexbox, grid, ukuran relatif, dan media query.",
+      "task": "Buat dashboard yang nyaman dibuka di layar HP dan laptop.",
+      "url": "https://developer.mozilla.org/id/docs/Learn_web_development",
+      "id": "mylife-023"
+    },
+    {
+      "topic": "Web",
+      "title": "JavaScript dasar",
+      "desc": "Pelajari variabel, tipe data, array, object, kondisi, dan perulangan.",
+      "task": "Buat fungsi menghitung total siswa dari daftar data simulasi.",
+      "url": "https://developer.mozilla.org/id/docs/Web/JavaScript/Guide",
+      "id": "mylife-024"
+    },
+    {
+      "topic": "Web",
+      "title": "DOM dan event",
+      "desc": "Ambil elemen, ubah teks, tangani klik, dan validasi form.",
+      "task": "Buat tombol tambah data dan validasi input sederhana.",
+      "url": "https://developer.mozilla.org/id/docs/Learn_web_development",
+      "id": "mylife-025"
+    },
+    {
+      "topic": "Web",
+      "title": "Local storage dan JSON",
+      "desc": "Simpan preferensi lokal, ubah object ke JSON, dan pahami batas penyimpanan browser.",
+      "task": "Buat daftar tugas yang tetap ada setelah halaman dimuat ulang.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage",
+      "id": "mylife-026"
+    },
+    {
+      "topic": "Web",
+      "title": "Git dan GitHub dasar",
+      "desc": "Pahami repository, commit, push, branch, dan README.",
+      "task": "Buat repository latihan dan unggah halaman statis dengan README.",
+      "url": "https://docs.github.com/id/get-started",
+      "id": "mylife-027"
+    },
+    {
+      "topic": "Web",
+      "title": "Deploy halaman web",
+      "desc": "Pahami hosting statis, HTTPS, path file, dan pembaruan versi.",
+      "task": "Deploy proyek latihan menggunakan GitHub Pages.",
+      "url": "https://docs.github.com/id/pages",
+      "id": "mylife-028"
+    },
+    {
+      "topic": "Web",
+      "title": "PWA dan instalasi Android",
+      "desc": "Pelajari manifest, service worker, cache, dan perilaku offline.",
+      "task": "Periksa manifest dan service worker aplikasi latihan.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps",
+      "id": "mylife-029"
+    },
+    {
+      "topic": "Proyek",
+      "title": "Rancang modul SiAndal",
+      "desc": "Ubah kebutuhan pengguna menjadi fitur, alur, data, dan kriteria selesai.",
+      "task": "Buat spesifikasi satu fitur SiAndal: masalah, pengguna, alur, dan hasil.",
+      "url": "https://developer.mozilla.org/id/docs/Learn_web_development",
+      "id": "mylife-030"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Konsep Firebase dan proyek",
+      "desc": "Kenali project, app registration, konfigurasi SDK, dan environment.",
+      "task": "Buat diagram komponen Firebase untuk aplikasi latihan.",
+      "url": "https://firebase.google.com/docs/web/setup",
+      "id": "mylife-031"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Authentication dan alur login",
+      "desc": "Pahami user identity, sign-in, sign-out, reset password, dan session.",
+      "task": "Gambar alur login admin/guru dan skenario gagal login.",
+      "url": "https://firebase.google.com/docs/auth/web/start",
+      "id": "mylife-032"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Migrasi akun dengan aman",
+      "desc": "Rencanakan migrasi identitas tanpa menaruh password dalam dokumen database.",
+      "task": "Tulis checklist migrasi: backup, mapping UID, reset password, uji role.",
+      "url": "https://firebase.google.com/docs/auth",
+      "id": "mylife-033"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Firestore: koleksi dan dokumen",
+      "desc": "Rancang struktur koleksi, dokumen, ID, relasi, dan query sesuai kebutuhan.",
+      "task": "Rancang koleksi users, classes, announcements untuk data dummy.",
+      "url": "https://firebase.google.com/docs/firestore",
+      "id": "mylife-034"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Security Rules dasar",
+      "desc": "Atur akses berdasarkan identitas dan peran; jangan mengandalkan UI saja.",
+      "task": "Tuliskan aturan akses konseptual admin, guru, dan pengguna biasa.",
+      "url": "https://firebase.google.com/docs/firestore/security/get-started",
+      "id": "mylife-035"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Storage dan unggah file",
+      "desc": "Pahami path, metadata, batas ukuran, tipe file, dan Storage Rules.",
+      "task": "Rancang alur unggah banner dengan validasi ukuran dan tipe file.",
+      "url": "https://firebase.google.com/docs/storage/web/upload-files",
+      "id": "mylife-036"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Sinkronisasi dan offline",
+      "desc": "Pahami listener realtime, cache, status jaringan, dan konflik pembaruan.",
+      "task": "Gambar alur data saat perangkat online, offline, lalu online lagi.",
+      "url": "https://firebase.google.com/docs/firestore/manage-data/enable-offline",
+      "id": "mylife-037"
+    },
+    {
+      "topic": "Firebase",
+      "title": "Monitoring dan biaya",
+      "desc": "Kenali penggunaan baca/tulis, kuota, log, dan kebiasaan mencegah query boros.",
+      "task": "Buat daftar 5 hal yang perlu dipantau pada aplikasi produksi.",
+      "url": "https://firebase.google.com/docs/projects/learn-more",
+      "id": "mylife-038"
+    },
+    {
+      "topic": "Keamanan",
+      "title": "Secrets dan konfigurasi aplikasi",
+      "desc": "Bedakan konfigurasi publik dengan secret; jangan pernah mengunggah private key.",
+      "task": "Audit repository latihan dan cari token/password yang tidak boleh dipublikasikan.",
+      "url": "https://docs.github.com/en/code-security/secret-scanning",
+      "id": "mylife-039"
+    },
+    {
+      "topic": "Proyek",
+      "title": "Uji alur admin dan guru",
+      "desc": "Buat test case untuk login, hak akses, input data, unggah file, dan logout.",
+      "task": "Susun 10 test case positif dan negatif untuk SiAndal.",
+      "url": "https://firebase.google.com/docs",
+      "id": "mylife-040"
+    },
+    {
+      "topic": "Jaringan",
+      "title": "Topologi jaringan sekolah",
+      "desc": "Bedakan modem, router, switch, access point, LAN, WAN, dan jalur internet.",
+      "task": "Gambar topologi internet dari modem sampai perangkat pengguna.",
+      "url": "https://www.cisco.com/site/us/en/learn/training-certifications/training/index.html",
+      "id": "mylife-041"
+    },
+    {
+      "topic": "Jaringan",
+      "title": "IPv4, gateway, dan subnet mask",
+      "desc": "Pahami alamat jaringan, host, gateway, dan private IP.",
+      "task": "Identifikasi IP/gateway perangkat latihan dan jelaskan fungsinya.",
+      "url": "https://www.cisco.com/site/us/en/learn/training-certifications/training/index.html",
+      "id": "mylife-042"
+    },
+    {
+      "topic": "Jaringan",
+      "title": "DHCP dan DNS",
+      "desc": "Pelajari bagaimana perangkat mendapat IP dan menerjemahkan nama domain.",
+      "task": "Jelaskan urutan perangkat tersambung Wi-Fi hingga membuka situs.",
+      "url": "https://www.cloudflare.com/learning/dns/what-is-dns/",
+      "id": "mylife-043"
+    },
+    {
+      "topic": "Jaringan",
+      "title": "Wi-Fi 2,4 GHz dan 5 GHz",
+      "desc": "Bandingkan jangkauan, interferensi, kanal, dan kapasitas perangkat.",
+      "task": "Buat rencana kanal Wi-Fi sederhana untuk area sekolah simulasi.",
+      "url": "https://openwrt.org/docs/guide-user/network/wifi/basic",
+      "id": "mylife-044"
+    },
+    {
+      "topic": "Jaringan",
+      "title": "Ping, traceroute, dan DNS lookup",
+      "desc": "Gunakan alat diagnosis untuk membedakan masalah koneksi, rute, dan resolusi nama.",
+      "task": "Susun urutan pemeriksaan saat internet lambat atau tidak bisa diakses.",
+      "url": "https://openwrt.org/docs/guide-user/diagnostics/start",
+      "id": "mylife-045"
+    },
+    {
+      "topic": "Jaringan",
+      "title": "QoS dan pembagian bandwidth",
+      "desc": "Kenali latency, jitter, throughput, fairness, dan prioritas trafik.",
+      "task": "Buat rancangan pembagian bandwidth untuk 30 perangkat dengan prinsip adil.",
+      "url": "https://openwrt.org/docs/guide-user/network/traffic-shaping/start",
+      "id": "mylife-046"
+    },
+    {
+      "topic": "Jaringan",
+      "title": "Dasar OpenWrt",
+      "desc": "Kenali LuCI, interface, DHCP, firewall zone, package, dan backup konfigurasi.",
+      "task": "Buat diagram interface WAN/LAN dan daftar konfigurasi yang wajib dicadangkan.",
+      "url": "https://openwrt.org/docs/start",
+      "id": "mylife-047"
+    },
+    {
+      "topic": "Keamanan",
+      "title": "Keamanan akun dan autentikasi",
+      "desc": "Gunakan password unik, pengelola kata sandi, MFA, dan prinsip least privilege.",
+      "task": "Buat checklist pengamanan akun admin sekolah.",
+      "url": "https://www.cisa.gov/secure-our-world",
+      "id": "mylife-048"
+    },
+    {
+      "topic": "Keamanan",
+      "title": "Phishing dan keamanan data",
+      "desc": "Kenali tautan palsu, lampiran berbahaya, kebocoran data, dan minimisasi data.",
+      "task": "Buat 5 contoh tanda phishing dan langkah pelaporan.",
+      "url": "https://www.bssn.go.id/",
+      "id": "mylife-049"
+    },
+    {
+      "topic": "Keamanan",
+      "title": "Backup konfigurasi router dan aplikasi",
+      "desc": "Pastikan backup terenkripsi, terjadwal, dan bisa dipulihkan.",
+      "task": "Tulis SOP backup konfigurasi router dan database aplikasi.",
+      "url": "https://openwrt.org/docs/guide-user/troubleshooting/backup_restore",
+      "id": "mylife-050"
+    },
+    {
+      "topic": "English",
+      "title": "Kosakata teknologi kerja",
+      "desc": "Pelajari istilah umum: account, access, backup, database, deployment, issue.",
+      "task": "Buat glosarium 20 istilah dengan contoh kalimat sederhana.",
+      "url": "https://grow.google/intl/id_id/learn-skills/",
+      "id": "mylife-051"
+    },
+    {
+      "topic": "English",
+      "title": "Membaca dokumentasi teknis",
+      "desc": "Latih mencari kata kunci, membaca langkah, dan memahami warning/error.",
+      "task": "Baca satu halaman dokumentasi lalu tulis ringkasan bahasa Indonesia.",
+      "url": "https://developer.mozilla.org/id/docs/Learn_web_development",
+      "id": "mylife-052"
+    },
+    {
+      "topic": "Komunikasi",
+      "title": "Menulis laporan insiden IT",
+      "desc": "Laporan baik berisi waktu, dampak, gejala, pemeriksaan, dan tindakan.",
+      "task": "Tulis laporan simulasi gangguan internet tanpa menyalahkan pihak tertentu.",
+      "url": "https://grow.google/intl/id_id/learn-skills/",
+      "id": "mylife-053"
+    },
+    {
+      "topic": "Keuangan",
+      "title": "Anggaran dan arus kas pribadi",
+      "desc": "Pisahkan pemasukan, kebutuhan, tabungan, bantuan keluarga, dan hiburan.",
+      "task": "Buat anggaran bulanan berdasarkan angka simulasi atau data pribadi yang nyaman dicatat.",
+      "url": "https://sikapiuangmu.ojk.go.id/",
+      "id": "mylife-054"
+    },
+    {
+      "topic": "Keuangan",
+      "title": "Dana darurat dan tujuan tabungan",
+      "desc": "Tentukan target realistis, jadwal setoran, dan tempat menyimpan dana aman.",
+      "task": "Buat rencana tabungan 6 bulan dengan nominal yang realistis.",
+      "url": "https://sikapiuangmu.ojk.go.id/",
+      "id": "mylife-055"
+    },
+    {
+      "topic": "Keuangan",
+      "title": "Memahami risiko investasi",
+      "desc": "Bandingkan risiko, likuiditas, biaya, legalitas, dan horizon waktu; waspadai janji untung pasti.",
+      "task": "Buat tabel perbandingan tabungan, deposito, emas, dan reksa dana.",
+      "url": "https://sikapiuangmu.ojk.go.id/",
+      "id": "mylife-056"
+    },
+    {
+      "topic": "Proyek",
+      "title": "Bangun portofolio operator digital",
+      "desc": "Pilih hasil kerja yang aman dipublikasikan: dashboard dummy, SOP, dan aplikasi demo.",
+      "task": "Susun halaman portofolio dengan 3 proyek tanpa data rahasia sekolah.",
+      "url": "https://github.com/",
+      "id": "mylife-057"
+    },
+    {
+      "topic": "Proyek",
+      "title": "Dokumentasi proyek dan panduan pengguna",
+      "desc": "Tulis tujuan, fitur, cara instalasi, akun demo, batasan, dan changelog.",
+      "task": "Buat README dan panduan singkat untuk satu proyek.",
+      "url": "https://docs.github.com/id/get-started",
+      "id": "mylife-058"
+    },
+    {
+      "topic": "Proyek",
+      "title": "Presentasi hasil kerja",
+      "desc": "Jelaskan masalah, solusi, proses, hasil, dan hal yang akan diperbaiki.",
+      "task": "Buat presentasi 5 slide untuk dashboard atau aplikasi demo.",
+      "url": "https://grow.google/intl/id_id/learn-skills/",
+      "id": "mylife-059"
+    },
+    {
+      "topic": "Evaluasi",
+      "title": "Evaluasi 60 hari dan rencana lanjutan",
+      "desc": "Nilai keterampilan yang meningkat, proyek yang selesai, dan materi yang perlu diulang.",
+      "task": "Pilih 3 target untuk 30 hari berikutnya dan tetapkan hasil yang bisa dibuktikan.",
+      "url": "https://learn.microsoft.com/id-id/training/",
+      "id": "mylife-060"
+    },
+    {
+      "topic": "SiAndal Lanjutan",
+      "title": "Membuat matriks hak akses admin dan guru",
+      "desc": "Petakan peran pengguna, data yang boleh dibaca, data yang boleh ditambah/diubah, dan tindakan yang hanya boleh dilakukan admin. Bedakan kontrol tampilan dashboard dari otorisasi sebenarnya di server.",
+      "task": "Gunakan data fiktif. Buat tabel peran × koleksi × tindakan (read/create/update/delete). Tentukan minimal 3 aturan: guru hanya mengakses data yang relevan dengan kelas/tugasnya, admin mengelola data administrasi, dan pengguna yang belum login tidak dapat membaca data privat. Tandai aturan yang perlu divalidasi di Firebase Security Rules.",
+      "url": "https://firebase.google.com/docs/rules",
+      "id": "mylife-061"
+    },
+    {
+      "topic": "Firebase Security",
+      "title": "Menulis dan meninjau Firestore Security Rules",
+      "desc": "Pelajari match path, request.auth, validasi field, dan prinsip default-deny. Aturan keamanan harus membatasi akses di Firestore, bukan hanya menyembunyikan tombol di antarmuka.",
+      "task": "Buat draft rules untuk koleksi users dan data kelas menggunakan matriks sesi sebelumnya. Uji secara konseptual: tanpa login ditolak, guru hanya membaca data yang diizinkan, dan pengguna biasa tidak dapat mengubah role dirinya sendiri. Jangan deploy ke proyek produksi sebelum ditinjau.",
+      "url": "https://firebase.google.com/docs/firestore/security/get-started",
+      "id": "mylife-062"
+    },
+    {
+      "topic": "Firebase Testing",
+      "title": "Menguji Security Rules dengan Emulator",
+      "desc": "Kenali Firebase Local Emulator Suite dan pengujian untuk pengguna terautentikasi maupun tanpa autentikasi. Tujuannya membuktikan akses yang diizinkan dan ditolak sebelum aturan diterapkan.",
+      "task": "Buat daftar minimal 6 test case: 2 akses yang harus berhasil dan 4 akses yang harus gagal. Jika tersedia komputer dengan Node.js dan Firebase CLI, jalankan Firestore Emulator dan dokumentasikan hasil assertSucceeds/assertFails. Jangan menguji dengan data siswa asli.",
+      "url": "https://firebase.google.com/docs/firestore/security/test-rules-emulator",
+      "id": "mylife-063"
+    },
+    {
+      "topic": "PWA Maintenance",
+      "title": "Memahami cache dan siklus pembaruan Service Worker",
+      "desc": "Pelajari install, activate, fetch, cache versioning, dan mengapa tab lama dapat menunda aktivasi service worker baru. Rancang pesan pembaruan yang jelas dan strategi offline yang tidak mengorbankan data pengguna.",
+      "task": "Periksa sw.js pada proyek latihan. Catat nama cache dan daftar file yang dicache. Rancang perubahan versi cache (misalnya mylife-v2) dan uji skenario: online dengan update baru, offline, dan tab aplikasi lama masih terbuka. Jangan menghapus cache lama sebelum memastikan alur aktivasi aman.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers",
+      "id": "mylife-064"
+    },
+    {
+      "topic": "GitHub Release",
+      "title": "Membuat checklist rilis dan rollback SiAndal/MyLife",
+      "desc": "Susun proses rilis kecil yang dapat diulang: backup, perubahan terukur, pemeriksaan file, uji di HP, catat versi, dan siapkan cara kembali ke versi sebelumnya.",
+      "task": "Buat RELEASE_CHECKLIST.md berisi: backup data, cek JSON valid, cek tautan HTTPS, uji tampilan HP, uji offline, uji update kurikulum, verifikasi progres tidak reset, catat commit/version, dan prosedur rollback. Lakukan pada repository latihan terlebih dahulu.",
+      "url": "https://docs.github.com/en/repositories/releasing-projects-on-github",
+      "id": "mylife-065"
+    }
+  ]
+}
