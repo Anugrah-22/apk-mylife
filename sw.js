@@ -1,10 +1,16 @@
-const CACHE = "mylife-cache-v5";
+const CACHE = "mylife-cache-v5-2";
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./icons/icon.svg",
-  "./curriculum.json"
+  "./curriculum.json",
+  "./sounds/ibadah.wav",
+  "./sounds/kerja.wav",
+  "./sounds/belajar.wav",
+  "./sounds/tidur.wav",
+  "./sounds/energi.wav",
+  "./sounds/classic.wav"
 ];
 
 const DB_NAME = "mylife_notif_db";
@@ -107,6 +113,15 @@ function getVibrationPattern(soundId) {
   }
 }
 
+async function isAppOpenInForeground() {
+  try {
+    const clientsArr = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+    return clientsArr.some((c) => c.visibilityState === "visible" || c.focused);
+  } catch {
+    return false;
+  }
+}
+
 async function checkAndFireReminders() {
   const cfg = await getConfig();
   if (!cfg || !cfg.enabled || !Array.isArray(cfg.items)) return;
@@ -127,15 +142,20 @@ async function checkAndFireReminders() {
       cfg.fired[key] = true;
       changed = true;
       const snd = item.sound || "default";
-      await self.registration.showNotification(item.title, {
+      const appVisible = await isAppOpenInForeground();
+      const notifOpts = {
         body: item.body,
         icon: "./icons/icon.svg",
         badge: "./icons/icon.svg",
         tag: "mylife-" + item.id + "-" + snd,
         renotify: true,
-        vibrate: getVibrationPattern(snd),
+        silent: appVisible,
         data: { url: item.targetTab ? `./#${item.targetTab}` : "./", sound: snd }
-      });
+      };
+      if (!appVisible) {
+        notifOpts.vibrate = getVibrationPattern(snd);
+      }
+      await self.registration.showNotification(item.title, notifOpts);
     }
   }
 
@@ -147,20 +167,25 @@ async function checkAndFireReminders() {
 self.addEventListener("message", (e) => {
   const data = e.data || {};
   if (data.type === "SYNC_REMINDERS") {
-    e.waitUntil(
-      setConfig(data.payload).then(() => checkAndFireReminders())
-    );
+    e.waitUntil(setConfig(data.payload).then(() => checkAndFireReminders()));
   } else if (data.type === "TEST_NOTIFICATION") {
     const snd = data.sound || "default";
     e.waitUntil(
-      self.registration.showNotification(data.title || "🔔 MyLife Pengingat Aktif", {
-        body: data.body || "Notifikasi sistem berhasil dijalankan.",
-        icon: "./icons/icon.svg",
-        badge: "./icons/icon.svg",
-        tag: "mylife-test-" + snd,
-        renotify: true,
-        vibrate: getVibrationPattern(snd),
-        data: { url: data.targetTab ? `./#${data.targetTab}` : "./", sound: snd }
+      isAppOpenInForeground().then((appVisible) => {
+        const isSilent = typeof data.silent === "boolean" ? data.silent : appVisible;
+        const notifOpts = {
+          body: data.body || "Notifikasi sistem berhasil dijalankan.",
+          icon: "./icons/icon.svg",
+          badge: "./icons/icon.svg",
+          tag: "mylife-test-" + snd,
+          renotify: true,
+          silent: isSilent,
+          data: { url: data.targetTab ? `./#${data.targetTab}` : "./", sound: snd }
+        };
+        if (!isSilent) {
+          notifOpts.vibrate = getVibrationPattern(snd);
+        }
+        return self.registration.showNotification(data.title || "🔔 MyLife Pengingat Aktif", notifOpts);
       })
     );
   } else if (data.type === "CHECK_NOW") {
@@ -169,15 +194,11 @@ self.addEventListener("message", (e) => {
 });
 
 self.addEventListener("periodicsync", (e) => {
-  if (e.tag === "mylife-reminder-sync") {
-    e.waitUntil(checkAndFireReminders());
-  }
+  if (e.tag === "mylife-reminder-sync") e.waitUntil(checkAndFireReminders());
 });
 
 self.addEventListener("sync", (e) => {
-  if (e.tag === "mylife-reminder-sync") {
-    e.waitUntil(checkAndFireReminders());
-  }
+  if (e.tag === "mylife-reminder-sync") e.waitUntil(checkAndFireReminders());
 });
 
 self.addEventListener("notificationclick", (e) => {
@@ -191,9 +212,7 @@ self.addEventListener("notificationclick", (e) => {
           return client.focus();
         }
       }
-      if (self.clients.openWindow) {
-        return self.clients.openWindow(targetUrl);
-      }
+      if (self.clients.openWindow) return self.clients.openWindow(targetUrl);
     })
   );
 });

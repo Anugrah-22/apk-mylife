@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#113d33">
-<meta name="description" content="MyLife - Personal Life Planner interaktif dengan nada notifikasi kustom & editor jadwal">
+<meta name="description" content="MyLife - Personal Life Planner interaktif dengan file audio notifikasi fisik & editor jadwal">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon.svg">
 <title>MyLife — Personal Life Planner</title>
@@ -146,7 +146,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
     <div class="row" style="align-items:flex-start">
       <div>
         <b style="color:#1e3a8a;font-size:14px">🔔 Aktifkan Pengingat & Suara Notifikasi Kustom</b>
-        <p class="muted" style="margin:4px 0 10px;color:#1e40af">Setiap kegiatan punya nada notifikasi default berbeda (Ibadah, Kerja, Belajar, Istirahat). Bisa diganti sesuai selera.</p>
+        <p class="muted" style="margin:4px 0 10px;color:#1e40af">Setiap kegiatan punya file audio default berbeda di folder <code>sounds/</code> (Ibadah, Kerja, Belajar, Istirahat). Bisa diganti sesuai selera.</p>
       </div>
     </div>
     <div class="row" style="justify-content:flex-start;flex-wrap:wrap">
@@ -197,7 +197,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
       <button class="secondary" onclick="resetPomodoro(25)">Reset 25m</button>
       <button class="secondary" onclick="resetPomodoro(5)">Istirahat 5m</button>
     </div>
-    <div style="font-size:11px;opacity:.8;margin-top:7px">Saat waktu habis, nada khusus Belajar akan berbunyi & muncul notifikasi sistem.</div>
+    <div style="font-size:11px;opacity:.8;margin-top:7px">Saat waktu habis, file suara <code>sounds/belajar.wav</code> akan berbunyi & muncul notifikasi.</div>
   </div>
 
   <!-- Kartu Materi Aktif -->
@@ -348,7 +348,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
     <div class="row">
       <div>
         <h3>🔔 Pengingat & Nada Tiap Kegiatan</h3>
-        <p class="muted" style="margin:2px 0">Tiap jenis kegiatan memiliki nada default berbeda & bisa diganti.</p>
+        <p class="muted" style="margin:2px 0">Menggunakan 6 file audio WAV bawaan di folder <code>sounds/</code> & bisa diganti.</p>
       </div>
       <span class="pill" id="notifPermBadge">Belum Aktif</span>
     </div>
@@ -377,10 +377,14 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
     <div id="alarmList"></div>
 
     <div style="background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:11px;margin-top:12px;font-size:12px;color:var(--muted)">
-      <b>💡 Info Suara Notifikasi:</b>
+      <b>💡 Daftar File Audio Bawaan (<code>sounds/</code>):</b>
       <ul style="margin:5px 0 0;padding-left:18px">
-        <li><b>Default Khusus Tiap Aktivitas:</b> Ibadah (<i>Gema Tenang</i>), Kerja (<i>Tegas Profesional</i>), Belajar (<i>Fokus Ceria</i>), Istirahat/Tidur (<i>Lembut Malam</i>), Hiburan (<i>Energi Ringan</i>).</li>
-        <li>Saat notifikasi muncul, ketuk tombol <b>🔊 Tes Nada</b> pada kartu kegiatan untuk mendengar perbedaan melodi dan pola getarannya.</li>
+        <li><code>sounds/ibadah.wav</code> — Gema Tenang (Default Ibadah)</li>
+        <li><code>sounds/kerja.wav</code> — Tegas Profesional (Default Kerja)</li>
+        <li><code>sounds/belajar.wav</code> — Fokus Ceria (Default Belajar)</li>
+        <li><code>sounds/tidur.wav</code> — Lembut Malam (Default Istirahat/Tidur)</li>
+        <li><code>sounds/energi.wav</code> — Energi Ringan (Default Hiburan)</li>
+        <li><code>sounds/classic.wav</code> — Lonceng Klasik</li>
       </ul>
     </div>
   </div>
@@ -509,15 +513,15 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
     <label>Pesan Detail Notifikasi</label>
     <textarea id="alarmBodyInput" rows="2" placeholder="Pesan yang tampil di bilah notifikasi HP..."></textarea>
 
-    <label>Pilih Suara / Nada Notifikasi</label>
+    <label>Pilih File Suara / Nada Notifikasi</label>
     <div style="display:flex;gap:8px;align-items:center">
       <select id="alarmSoundInput" style="margin:0;flex:1">
-        <option value="ibadah">🕌 Gema Tenang (Default Ibadah)</option>
-        <option value="kerja">💼 Tegas Profesional (Default Kerja)</option>
-        <option value="belajar">📘 Fokus Ceria (Default Belajar)</option>
-        <option value="tidur">🌙 Lembut Malam (Default Tidur)</option>
-        <option value="energi">⚡ Energi Ringan (Default Hiburan)</option>
-        <option value="classic">🔔 Lonceng Klasik</option>
+        <option value="ibadah">🕌 Gema Tenang (ibadah.wav)</option>
+        <option value="kerja">💼 Tegas Profesional (kerja.wav)</option>
+        <option value="belajar">📘 Fokus Ceria (belajar.wav)</option>
+        <option value="tidur">🌙 Lembut Malam (tidur.wav)</option>
+        <option value="energi">⚡ Energi Ringan (energi.wav)</option>
+        <option value="classic">🔔 Lonceng Klasik (classic.wav)</option>
         <option value="custom">🎵 File Audio Kustom Saya</option>
       </select>
       <button type="button" class="secondary" onclick="playSoundProfile(document.getElementById('alarmSoundInput').value)">🔊 Tes</button>
@@ -568,7 +572,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
   </div>
 </div>
 
-<footer>MyLife v5 • Android PWA • Nada Kustom & Editor Jadwal Fleksibel</footer>
+<footer>MyLife v5.2 • Android PWA • File Audio WAV Fisik & Editor Jadwal</footer>
 </main>
 
 <nav>
@@ -584,14 +588,23 @@ const BASE_LESSONS = [
   {id:'mylife-001',topic:'Spreadsheet',title:'Merapikan data administrasi',desc:'Kenali baris, kolom, tipe data, header, dan format tabel yang konsisten. Gunakan data siswa fiktif, bukan data pribadi.',task:'Buat tabel 20 siswa fiktif dengan kolom kelas, nama, tanggal lahir, dan status.',url:'https://etraining.kemnaker.go.id/belajarmandiri/detail/449'}
 ];
 
+const SOUND_FILES = {
+  ibadah: './sounds/ibadah.wav',
+  kerja: './sounds/kerja.wav',
+  belajar: './sounds/belajar.wav',
+  tidur: './sounds/tidur.wav',
+  energi: './sounds/energi.wav',
+  classic: './sounds/classic.wav'
+};
+
 const SOUND_LABELS = {
-  ibadah: '🕌 Gema Tenang',
-  kerja: '💼 Tegas Profesional',
-  belajar: '📘 Fokus Ceria',
-  tidur: '🌙 Lembut Malam',
-  energi: '⚡ Energi Ringan',
-  classic: '🔔 Lonceng Klasik',
-  custom: '🎵 Audio Kustom'
+  ibadah: '🕌 Gema Tenang (ibadah.wav)',
+  kerja: '💼 Tegas Profesional (kerja.wav)',
+  belajar: '📘 Fokus Ceria (belajar.wav)',
+  tidur: '🌙 Lembut Malam (tidur.wav)',
+  energi: '⚡ Energi Ringan (energi.wav)',
+  classic: '🔔 Lonceng Klasik (classic.wav)',
+  custom: '🎵 Audio Kustom Saya'
 };
 
 const CATEGORY_DEFAULT_SOUND = {
@@ -632,7 +645,7 @@ try{oldData=JSON.parse(localStorage.getItem(KEY)||localStorage.getItem('mylife30
 
 let data={
   done:[],notes:{},weights:[],habits:{},sleep:[],reviews:[],
-  customLessons:null,lessonVersion:'2026.11.22-v5',updateUrl:'./curriculum.json',
+  customLessons:null,lessonVersion:'2026.11.22-v5.2',updateUrl:'./curriculum.json',
   lastCurriculumCheck:null,bonusXp:0,animeLog:{},
   reminders:{enabled:false,items:JSON.parse(JSON.stringify(DEFAULT_ALARMS)),fired:{}},
   workSchedule:JSON.parse(JSON.stringify(DEFAULT_SCHEDULE)),
@@ -719,19 +732,30 @@ function show(id){
   window.scrollTo(0,0);
 }
 
-/* ==================== SYNTHESIZER NADA NOTIFIKASI TIAP KEGIATAN ==================== */
+/* ==================== PEMUTAR FILE AUDIO FISIK (sounds/*.wav) + FALLBACK ==================== */
+let activeAudioEl=null;
 let audioCtx=null;
+
 function playSoundProfile(profile='classic'){
+  if(activeAudioEl){
+    try{activeAudioEl.pause();activeAudioEl.currentTime=0;}catch{}
+  }
   if(profile==='custom' && data.customAudioData){
     try{
-      const audio=new Audio(data.customAudioData);
-      audio.play().catch(()=>playSynthMelody('classic'));
+      activeAudioEl=new Audio(data.customAudioData);
+      activeAudioEl.play().catch(()=>playSynthMelody('classic'));
       return;
     }catch{
       profile='classic';
     }
   }
-  playSynthMelody(profile);
+  const src=SOUND_FILES[profile]||SOUND_FILES.classic;
+  try{
+    activeAudioEl=new Audio(src);
+    activeAudioEl.play().catch(()=>playSynthMelody(profile));
+  }catch{
+    playSynthMelody(profile);
+  }
 }
 
 function playSynthMelody(profile){
@@ -740,46 +764,14 @@ function playSynthMelody(profile){
     if(!audioCtx)audioCtx=new Ctx();
     if(audioCtx.state==='suspended')audioCtx.resume();
     const now=audioCtx.currentTime;
-
     const patterns={
-      // Ibadah: arpeggio harmonis lembut & khusyuk (F4 - A4 - C5 - F5)
-      ibadah:[
-        {f:349.23,t:0,d:0.35,type:'sine'},
-        {f:440.00,t:0.25,d:0.35,type:'sine'},
-        {f:523.25,t:0.50,d:0.40,type:'sine'},
-        {f:698.46,t:0.78,d:0.65,type:'sine'}
-      ],
-      // Kerja: dua ketukan tegas profesional (E5 - B4 - E5)
-      kerja:[
-        {f:659.25,t:0,d:0.16,type:'triangle'},
-        {f:493.88,t:0.18,d:0.16,type:'triangle'},
-        {f:659.25,t:0.38,d:0.30,type:'triangle'}
-      ],
-      // Belajar: nada naik cerah & fokus (C5 - E5 - G5)
-      belajar:[
-        {f:523.25,t:0,d:0.18,type:'sine'},
-        {f:659.25,t:0.16,d:0.18,type:'sine'},
-        {f:783.99,t:0.32,d:0.42,type:'sine'}
-      ],
-      // Tidur: nada turun pelan menenangkan (G4 - E4 - C4)
-      tidur:[
-        {f:392.00,t:0,d:0.45,type:'sine'},
-        {f:329.63,t:0.42,d:0.45,type:'sine'},
-        {f:261.63,t:0.84,d:0.75,type:'sine'}
-      ],
-      // Hiburan: ketukan cepat ceria (A4 - C#5 - E5 - A5)
-      energi:[
-        {f:440.00,t:0,d:0.12,type:'triangle'},
-        {f:554.37,t:0.12,d:0.12,type:'triangle'},
-        {f:659.25,t:0.24,d:0.12,type:'triangle'},
-        {f:880.00,t:0.36,d:0.28,type:'triangle'}
-      ],
-      classic:[
-        {f:587.33,t:0,d:0.25,type:'sine'},
-        {f:880.00,t:0.22,d:0.45,type:'sine'}
-      ]
+      ibadah:[{f:349.23,t:0,d:0.35,type:'sine'},{f:440,t:0.25,d:0.35,type:'sine'},{f:523.25,t:0.50,d:0.40,type:'sine'},{f:698.46,t:0.78,d:0.65,type:'sine'}],
+      kerja:[{f:659.25,t:0,d:0.16,type:'triangle'},{f:493.88,t:0.18,d:0.16,type:'triangle'},{f:659.25,t:0.38,d:0.30,type:'triangle'}],
+      belajar:[{f:523.25,t:0,d:0.18,type:'sine'},{f:659.25,t:0.16,d:0.18,type:'sine'},{f:783.99,t:0.32,d:0.42,type:'sine'}],
+      tidur:[{f:392,t:0,d:0.45,type:'sine'},{f:329.63,t:0.42,d:0.45,type:'sine'},{f:261.63,t:0.84,d:0.75,type:'sine'}],
+      energi:[{f:440,t:0,d:0.12,type:'triangle'},{f:554.37,t:0.12,d:0.12,type:'triangle'},{f:659.25,t:0.24,d:0.12,type:'triangle'},{f:880,t:0.36,d:0.28,type:'triangle'}],
+      classic:[{f:587.33,t:0,d:0.25,type:'sine'},{f:880,t:0.22,d:0.45,type:'sine'}]
     };
-
     const notes=patterns[profile]||patterns.classic;
     notes.forEach(n=>{
       const osc=audioCtx.createOscillator();
@@ -789,10 +781,8 @@ function playSynthMelody(profile){
       gain.gain.setValueAtTime(0.001,now+n.t);
       gain.gain.exponentialRampToValueAtTime(0.28,now+n.t+0.03);
       gain.gain.exponentialRampToValueAtTime(0.001,now+n.t+n.d);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start(now+n.t);
-      osc.stop(now+n.t+n.d+0.05);
+      osc.connect(gain);gain.connect(audioCtx.destination);
+      osc.start(now+n.t);osc.stop(now+n.t+n.d+0.05);
     });
   }catch(e){}
 }
@@ -975,13 +965,14 @@ function saveScheduleModal(){
   data.workSchedule.sort((a,b)=>(a.start||'99:99').localeCompare(b.start||'99:99'));
 
   if(document.getElementById('schedSyncAlarmCheck').checked){
-    const cat=activity.toLowerCase().includes('subuh')||activity.toLowerCase().includes('magrib')||activity.toLowerCase().includes('isya')||activity.toLowerCase().includes('salat')
+    const low=activity.toLowerCase();
+    const cat=low.includes('subuh')||low.includes('magrib')||low.includes('isya')||low.includes('salat')
       ?'ibadah'
-      :activity.toLowerCase().includes('kerja')
+      :low.includes('kerja')
       ?'kerja'
-      :activity.toLowerCase().includes('belajar')
+      :low.includes('belajar')
       ?'belajar'
-      :activity.toLowerCase().includes('tidur')
+      :low.includes('tidur')
       ?'tidur'
       :'hiburan';
 
@@ -1165,7 +1156,7 @@ function testSingleAlarm(idx){
   if(!it)return;
   playSoundProfile(it.sound||'classic');
   fireSystemNotification(it.title,it.body,it.targetTab||'routine',it.sound||'classic');
-  toast(`🔊 Memutar nada: ${SOUND_LABELS[it.sound]||'Default'}`);
+  toast(`🔊 Memutar file: ${SOUND_LABELS[it.sound]||'Default'}`);
 }
 
 function closeModal(id){
@@ -1460,21 +1451,22 @@ async function enableOutOfAppNotifications(){
     }catch(e){}
   }
 
-  toast('🔔 Notifikasi luar aplikasi & suara kustom aktif!');
+  toast('🔔 Notifikasi luar aplikasi & file suara kustom aktif!');
   sendTestSystemNotification();
   renderAlarms();
 }
 
 async function fireSystemNotification(title,body,targetTab='home',sound='classic'){
   if(!('Notification' in window)||Notification.permission!=='granted')return;
+  const isForeground=(document.visibilityState==='visible');
   if('serviceWorker' in navigator){
     const reg=await navigator.serviceWorker.ready;
     if(reg.active){
-      reg.active.postMessage({type:'TEST_NOTIFICATION',title,body,targetTab,sound});
+      reg.active.postMessage({type:'TEST_NOTIFICATION',title,body,targetTab,sound,silent:isForeground});
       return;
     }
   }
-  new Notification(title,{body,icon:'./icons/icon.svg'});
+  new Notification(title,{body,icon:'./icons/icon.svg',silent:isForeground});
 }
 
 function sendTestSystemNotification(){
@@ -1485,7 +1477,7 @@ function sendTestSystemNotification(){
   }
   fireSystemNotification(
     '🔔 MyLife Pengingat Aktif!',
-    'Notifikasi & nada khusus tiap aktivitas siap mengingatkan jadwal harianmu.',
+    'File audio WAV di folder sounds/ & jadwal kustom siap mengingatkanmu.',
     'routine',
     'ibadah'
   );
@@ -1514,7 +1506,9 @@ setInterval(()=>{
       if(item.active&&item.time===curHM&&!data.reminders.fired[key]){
         data.reminders.fired[key]=true;
         changed=true;
-        playSoundProfile(item.sound||'classic');
+        if(document.visibilityState==='visible'){
+          playSoundProfile(item.sound||'classic');
+        }
         fireSystemNotification(item.title,item.body,item.targetTab||'home',item.sound||'classic');
       }
     }
